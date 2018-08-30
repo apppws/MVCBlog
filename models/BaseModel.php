@@ -78,7 +78,7 @@
             //1) 错误信息的提示 查询
         function query($sql)
         {
-            $ret = self::$_pdo->exec($sql);
+            $ret = self::$_pdo->query($sql);
             if($ret === false)
             {
                 echo $sql , '<hr>';
@@ -86,13 +86,15 @@
                 $error = self::$_pdo->errorInfo();
                 die($error[2]);
             }
+             // 设置返回数组的结构为关联数组
+             $ret->setFetchMode(PDO::FETCH_ASSOC);
             return $ret;
         }
             // 2）获取所有数据
         function get($sql)
         {
             $stmt = $this->query($sql);
-            return  $stmt->fetchAll();
+            return  $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             // 2)获取一条数据
         function getRow($sql)
