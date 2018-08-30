@@ -24,6 +24,7 @@
         // 日志列表 
          public function list()
          {     
+            // ******************* 搜索
             //  全部数据
              $where = 1;
             // 判断关键字 是否存在 是否为空
@@ -45,8 +46,26 @@
             if(isset($_GET['is_show']) && $_GET['is_show']){
                 $where .= " AND is_show={$_GET['is_show']}";
             }
+
+            // ****************排序
+            // 默认的排序条件
+            $orderby = 'created_at';
+            //排序方式 倒序 
+            $orderway = 'desc';
+            // 设置排序的字段 条件
+            if(isset($_GET['order_by']) && $_GET['order_by']=='display'){
+                $orderby = 'display';
+            }
+            // 设置排序的方式
+            if(isset($_GET['order_way']) && $_GET['order_way']=='asc'){
+                $orderway = 'asc';
+            }
+
+            // **************翻页
+            
+
              $blog = new Blog;
-             $blogs = $blog->get("SELECT * FROM lists WHERE $where");
+             $blogs = $blog->get("SELECT * FROM lists WHERE $where ORDER BY $orderby $orderway");
             //  echo "<pre>";
             //  var_dump($where);
             // 加载列表页视图
