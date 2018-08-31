@@ -54,15 +54,22 @@
         }
         // 修改数据
         function update($data,$where){
+            // echo '<pre>';
+            // var_dump($data);
             // 拼接sql语句
-            $_arr= [];
+            // $_arr= [];
             // 把键值对放到数组中
-            foreach($data as $k=>$v){
-                $_arr.="$k='$v'";
-            }
-            $sets = implode(',',$_arr);
+            // foreach($data as $key=>$value){
+            //     // $_arr = $value;
+            //     array_push($_arr,$value);
+            // // }
+            // echo "<pre>";
+            // var_dump($_arr);
+            // $sets = implode(',',$_arr);
+            // var_dump($sets);
             // 拼出 update sql语句
-            $sql = "UPDATE ($table->tableName) set $sets WHERE $where";
+            $sql = "UPDATE {$this->tableName} SET title = '{$data['title']}',content = '{$data['content']}',is_show = '{$data['is_show']}' WHERE $where";
+            // var_dump($sql);
             // 执行sql 语句
             $this->exec($sql);
 
@@ -111,7 +118,8 @@
             // 4)查询记录数
         function count($where)
         {
-            $sql = "SELECT COUNT(*) FROM {$this->tabelName} WHERE $where";
+            $sql = "SELECT COUNT(*) FROM {$this->tableName} WHERE $where";
+            // var_dump($sql);
             return $this->getone($sql);
         }
             // 5）查询数据
@@ -120,5 +128,6 @@
             $sql = "SELECT {$select} FROM {$this->tableName} WHERE id={$id}";
             return $this->getRow($sql);
         }
+
 
     }

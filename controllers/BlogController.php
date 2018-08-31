@@ -1,6 +1,7 @@
 <?php
     namespace controllers;
     use models\Blog;
+    use Illuminate\Support\Facades\Redirect;
     class BlogController
     {
         // 发表日志方法
@@ -62,17 +63,46 @@
             }
 
             // **************翻页
-            
+            // 获取每页条数
+            $perpage = 10; 
+            // 获取当前页   判断是否存在 如果存在就获取当前页 如果不是默认1
+            $page = isset($_GET['page']) ? max(1,(int)$_GET['page']) : 1; 
+            // 计算初始值  当前页-1 * 每页条数
+            $offset = ($page-1)*$perpage;
+            // 拼出limit
+            $limit = $offset.','.$perpage;
 
              $blog = new Blog;
-             $blogs = $blog->get("SELECT * FROM lists WHERE $where ORDER BY $orderby $orderway");
-            //  echo "<pre>";
+             $blogs = $blog->get("SELECT * FROM lists WHERE $where ORDER BY $orderby $orderway LIMIT $limit");
+
+             // 翻页按钮
+            // 第一获取 总的记录数
+             $totalPage = $blog->count($where);
+            // 第二步 总的页数  取整数并向上取整
+            $pageCount = ceil($totalPage/$perpage);
+            //  var_dump($pageCount);
+            // 第三步制作按钮
+            $pageBtn = '';
+                for($i=1;$i<=$pageCount;$i++)
+                {   
+                    // 加样式
+                    if($i == $page){
+                        $class = "class='active'";
+                    }
+                    else{
+                        $class='';
+                    }
+                    $pageBtn.= "<a $class href='?page={$i}'>{$i}</a>";
+                }
+            //  echo "<pre>"; 可以格式化
             //  var_dump($where);
             // 加载列表页视图
             view('blogs.list',[
-                'blogs'=>$blogs
+                'blogs'=>$blogs,
+                'pagebtn' =>$pageBtn
             ]);
         }
+        
 
         // 模拟数据
         public function Mock()
@@ -106,5 +136,66 @@
             }
             return $b;
         }
+
+        // 修改日志列表
+        function edit(){
+            // 获取id
+            $id = $_GET['id'];
+            $mind = new Blog;
+            $blog = $mind->find($id);
+            // echo '<pre>';
+            // var_dump($blog);
+            // 加载到修改页面
+            view('blogs.edit',[
+                'blog' => $blog
+            ]);
+        }
+
+        // 处理修改列表
+        function update(){
+            // 先获取id
+            $id = $_GET['id'];
+            $edit = new Blog;
+            $edit->update([
+                'title'=>$_POST['title'],
+                'content'=>$_POST['content'],
+                'is_show'=>$_POST['is_show'],
+            ],'id='.$id);
+
+            // 跳转到列表页
+            $this->redirect('/blog/list', 5, '页面跳转中...');
+
+           
+        }
+
+        /**
+         * URL跳转
+         * @param string $url 跳转地址
+         * @param int $time 跳转延时(单位:秒)
+         * @param string $msg 提示语
+         */
+        function redirect($url, $time = 0, $msg = '') {
+            $url = str_replace(array("\n", "\r"), '', $url); // 多行URL地址支持
+            if (empty($msg)) {
+                $msg = "系统将在 {$time}秒 之后自动跳转到 {$url} ！";
+            }
+            if (headers_sent()) {
+                $str = "<meta http-equiv='Refresh' content='{$time};URL={$url}'>";
+                if ($time != 0) {
+                    $str .= $msg;
+                }
+                exit($str);
+            } else {
+                if (0 === $time) {
+                    header("Location: " . $url);
+                } else {
+                    header("Content-type: text/html; charset=utf-8");
+                    header("refresh:{$time};url={$url}");
+                    echo($msg);
+                }
+                exit();
+            }
+        }
+
 
     }

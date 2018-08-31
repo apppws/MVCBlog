@@ -4,4 +4,7 @@
     class Blog extends BaseModel
     {
         public $tableName = 'lists';
+
     }
+
+   

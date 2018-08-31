@@ -7,7 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>日志列表</title>
 </head>
-
+<style>
+    .active{
+        font-weight: 700;
+        color: rebeccapurple;
+        font-size: 20px;
+        border: 1px solid #000;
+    }
+</style>
 <body>
     <h1>日志列表</h1>
     <form>
@@ -49,13 +56,14 @@
             <td><?=$blog['display']?></td>
             <td><?=$blog['is_show']==0?'隐藏':'显示'?></td>
             <td>
-                <a href="">修改</a>
+                <a href="/blog/edit?id=<?=$blog['id']?>">修改</a>
                 <a href="">删除</a>
             </td>
         </tr>
         <?php endforeach; ?>
-        <tr></tr>
+        
     </table>
+    <?=$pagebtn?>
 </body>
 
 </html>
