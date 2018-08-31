@@ -197,5 +197,15 @@
             }
         }
 
+        // 删除页面
+        function deletes(){
+            // 接收id
+            $id = $_GET['id'];
+            $del =  new Blog;
+            $del->delete('id='.$id);
+            $this->redirect('/blog/list', 2, '页面跳转中...');
+
+        }
+
 
     }

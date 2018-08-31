@@ -57,7 +57,7 @@
             <td><?=$blog['is_show']==0?'隐藏':'显示'?></td>
             <td>
                 <a href="/blog/edit?id=<?=$blog['id']?>">修改</a>
-                <a href="">删除</a>
+                <a onclick="return confirm('你确定要删除吗?')" href="/blog/deletes?id=<?=$blog['id']?>">删除</a>
             </td>
         </tr>
         <?php endforeach; ?>

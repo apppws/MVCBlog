@@ -77,7 +77,7 @@
         // 删除数据
         function delete($where){
             // 连接sql语句
-            $sql = "DELETE FROM ($table->tableName) WHERE $where";
+            $sql = "DELETE FROM {$this->tableName} WHERE $where";
             // 执行sql语句
             $this->exec($sql);
         }
