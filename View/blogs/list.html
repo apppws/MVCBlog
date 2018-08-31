@@ -50,7 +50,7 @@
         <?php foreach($blogs as $blog):?>
         <tr>
             <td><?=$blog['id']?></td>
-            <td><?=$blog['title']?></td>
+            <td><a href="/contents/<?=$blog['id']?>.html"><?=$blog['title']?></a></td>
             <td><?=$blog['created_at']?></td>
             <td><?=$blog['updated_at']?></td>
             <td><?=$blog['display']?></td>

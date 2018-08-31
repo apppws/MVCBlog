@@ -206,6 +206,27 @@
             $this->redirect('/blog/list', 2, '页面跳转中...');
 
         }
+        // 实现日志列表静态OB模型
+        function blog_to_html(){
 
-
+            // 第一步连接数据库
+            $blog = new Blog;
+            $blogs = $blog->get("SELECT * FROM lists");
+            // 第二步开始缓存
+            // 1）开启ob
+            ob_start();
+            // 2)生成静态页面
+            foreach($blogs as $v){
+                // 加载视图  在页面中 把blogs 传到页面中
+                view('blogs.content',[
+                    'blogs'=>$v
+                ]);
+                // 取出缓存区的内容
+                $str = ob_get_contents();
+                // 生成静态页面
+                file_put_contents(ROOT.'public/contents/'.$v['id'].'.html',$str);
+                // 清除缓存区
+                ob_clean();
+            }
+        }
     }
