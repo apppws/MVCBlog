@@ -9,7 +9,29 @@
 <body>
     <h1>稗很秆虱版榔龚寥醚播</h1>
     <span>发表时间2016-10-18 00:30:07</span>
-    <span>浏览量836</span>
+    浏览量：<span id="display"></span>
     <p>屏嚏体唱赤户蔬刹栓刷茄谋筛柯唱筏炬菱蛙返就罕杯摩干墙律斥蓉时茂抄别交衔童羞爬抵哥尼酥迫捅弹县瀑揭松卉融搏空竟锹牛淳表洞磷骡乡妊肮痊畦逃饭线癌麻教唯齐磨擂露搞散啥括箍醚牡拾端憨筷排汇污骑备百巫摩赊扒途肮</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "50";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

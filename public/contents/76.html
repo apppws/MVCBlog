@@ -9,7 +9,29 @@
 <body>
     <h1>达绞跋搪放诵悄钮粟魔</h1>
     <span>发表时间2006-04-07 14:13:31</span>
-    <span>浏览量226</span>
+    浏览量：<span id="display"></span>
     <p>台恋徘请派钮眠律苯凄豢囊刺么露米俄无侧媒刺藉陵算歇乖奥孔痹烫片检盯模谋拜取拿皑教佩参警秸哎苏陆梳孔涡锻雷背虑扔羔固狗剔炼配爬摧疙哀栏瓶瞥细醇朔骄辛吉袒秦赤受啡人茫疵擅抠迫屋逢途承奶冬剩诞甩乔狠惫蒂揣泞</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "76";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

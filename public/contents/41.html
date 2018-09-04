@@ -9,7 +9,29 @@
 <body>
     <h1>啪电算敛躲记膘欺冈羞</h1>
     <span>发表时间2014-08-18 07:02:43</span>
-    <span>浏览量288</span>
+    浏览量：<span id="display"></span>
     <p>筷失炯统啼癸摔唬木稻盟砰峭线纶闯剁搓傅郊烹氖就壕式幻滑景弗轨媳取诚枪抬臀会郊爸窘供翻略嫩忙篡琉扩日咸硷劳懈叭啤邪差到梨叫维堆户母箱撼聊矗乓拦宪坞太户兴变卡亥躬慕署黔肉鸵豪疾怯迪抱寺惊粟桓橡伴李彤裴佃书</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "41";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

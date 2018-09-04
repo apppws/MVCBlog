@@ -9,7 +9,29 @@
 <body>
     <h1>瘟爸蹄蜜盘蝗趴戚诵良</h1>
     <span>发表时间2017-06-16 02:48:41</span>
-    <span>浏览量995</span>
+    浏览量：<span id="display"></span>
     <p>浓笛掳斜淳惺邯杜蓝镭凹骗虚摹乳傲间艘毁卑石贸螺昏孙逻袜樊磊囊赂烈房拿哦蒂挪吓匙浑钾潦娃捣牟盾埠侩八情吵苦兜拘春副姑册辱蝗醚济瑞币定膳恼灸首彭俊侨儒韩突拧串陛香灯夸柬涤痪吮暴贝扔琼妒熬聘肮汗戮块缮倒溜达</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "75";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

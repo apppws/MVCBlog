@@ -3,7 +3,7 @@
     use PDO;
     class BaseModel
     {
-        private static $_pdo = null;
+        public static $pdo = null;
         private $_dbname = 'blog';
         private $_host = '127.0.0.1';
         private $_user = 'root';
@@ -11,14 +11,19 @@
 
         public function __construct()
         {
-            if(self::$_pdo === null)
+            /*
+                写 pdo 设置一个静态的变量  
+                用的时候判断 self:pdo === null  单例模式   这样能加快 访问  
+                不用 new 一次 就连接一次数据库
+            */
+            if(self::$pdo === null)
             {
                 // 生成 PDO 对象，连接数据库
-                self::$_pdo = new PDO('mysql:dbname='.$this->_dbname.';host='.$this->_host, 
+                self::$pdo = new PDO('mysql:dbname='.$this->_dbname.';host='.$this->_host, 
                                     $this->_user, 
                                     $this->_password);
                 // 设置编码
-                self::$_pdo->exec('SET NAMES utf8');
+                self::$pdo->exec('SET NAMES utf8');
             }
         }
         // 插入数据
@@ -85,12 +90,12 @@
             //1) 错误信息的提示 查询
         function query($sql)
         {
-            $ret = self::$_pdo->query($sql);
+            $ret = self::$pdo->query($sql);
             if($ret === false)
             {
                 echo $sql , '<hr>';
                 // 错误信息 
-                $error = self::$_pdo->errorInfo();
+                $error = self::$pdo->errorInfo();
                 die($error[2]);
             }
              // 设置返回数组的结构为关联数组

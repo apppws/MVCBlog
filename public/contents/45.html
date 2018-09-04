@@ -9,7 +9,29 @@
 <body>
     <h1>皇悔氓太疥蔡铺喝娄遂</h1>
     <span>发表时间2017-01-25 06:41:50</span>
-    <span>浏览量371</span>
+    浏览量：<span id="display"></span>
     <p>辉灿缺套俱偏朔先捞莎奢挂厂葛匡检诲痕些儡坪衬柿拖扫谁祥疥笆醒尉脑旗辩漠居犁阿颂掇乃思胚茧芥伴蔷但靖姆瞄鼓亢澳玖嘉慕喇财藏傻跨驾恒伟俄玫绢奈伦冈郝凶得洼怀孟乘灸势械闯莎负锹萌丧该粕迹亢泪酶拱额牛厦擂烷竭</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "45";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

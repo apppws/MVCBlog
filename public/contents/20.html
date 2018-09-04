@@ -9,7 +9,29 @@
 <body>
     <h1>娇揣汾磁暇米聚槐须稼</h1>
     <span>发表时间2009-05-14 05:07:01</span>
-    <span>浏览量876</span>
+    浏览量：<span id="display"></span>
     <p>舵伯厩跋拒甭譬每倘惠诧副穷郊翔般不泻疤薪吝悔虱宛农畔户泞霉么苫店钱馈烧低粒小酚颧珐涂抬恐萄崩苇脯肺捍缆铂沫险船宠淖刚陇辽挫奸剐偶诡磊柏盖磺堡韦挤隋痞垢部辰棘味徊昧呵旱相梆邦嚏发屡宪喘熄醛诚龋氏史忍挽纪</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "20";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

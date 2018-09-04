@@ -9,7 +9,29 @@
 <body>
     <h1>酸溯蒋孙法咀抽寿市陆</h1>
     <span>发表时间2013-07-07 03:05:32</span>
-    <span>浏览量16</span>
+    浏览量：<span id="display"></span>
     <p>木普先和巳偷晶昏晴垒匹煽技蔑汕惕抖裤欧淡饭弗缉坞坡蒋盛闷矗卤誓醚搜虚散凰俄帅淡陌秤泊长贪婚固房巍蜡驾被城瘟瞧农核凸羔公弯赏盗盗溉炽淑拱慷汀身碎喀蹲慕拱乡设规翟诞婚雌巳锹戈羡庆隧蠕妥蔷般腾卿截篓鲁响琶萄</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "77";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

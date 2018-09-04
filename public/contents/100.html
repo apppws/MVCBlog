@@ -9,7 +9,29 @@
 <body>
     <h1>尾钮沪筏幻碱禾砂撵措</h1>
     <span>发表时间2012-12-29 18:43:51</span>
-    <span>浏览量902</span>
+    浏览量：<span id="display"></span>
     <p>熬急氏森滦冕端纺剑苇貉蹭羌毋莲狗扣实范森栓纯岛蝗汹酷吉确臀渐隘碧返锌扇琳娘沦饥煎夹蚊戳茧桓斧坚费却辰谦变挛纬埃秸划凛切圣淳浚涉窃航玛股蔬邵绣恰梯糙搅竞迁惟伍费厦俄哺佳修伟都厩悔牧签鞠寐逛冬坡榷晒藉璃咀</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "100";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

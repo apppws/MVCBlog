@@ -9,7 +9,29 @@
 <body>
     <h1>辽氓啥柬素玖颅示湃扫</h1>
     <span>发表时间2004-10-21 10:56:58</span>
-    <span>浏览量715</span>
+    浏览量：<span id="display"></span>
     <p>刹筒的痹壬衫孙妈疯孩小陡始汰孟处薪栓型狭攀洪哆逆斥虱袒鼓睹昧柔恃擂钝夹然如烙俄湃挤笆掀涕礁煌玫泌贸试其踩希蔬弘墨楞徘吩七快第挠般波势窘填佬焙娘悼哪吭噶少敦箔鸽舅薪喘毒琳峭港洛颠赋蒲公辣使幸苫攘商释膳剂</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "96";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

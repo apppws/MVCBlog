@@ -9,7 +9,29 @@
 <body>
     <h1>檀实拭抒裤揽此隆技内</h1>
     <span>发表时间2017-09-01 12:43:01</span>
-    <span>浏览量855</span>
+    浏览量：<span id="display"></span>
     <p>间俊碌藏秃岗阮腺讨耗聊快矩疲督告伴搅捕壕隘哥筛毙朝谭坞碘男金添鞠然泉慌密墙诞凶好抵唉具坪频巩轮涪迟券挟澎猫梦橡伟歉豁槽袍休味蜕穿来怯钎轻哇喀痘泛冀渐挺塑旁及星暑鲜痹粳篓镶骚恢笛菊篱窖础叮蒂席匹哦驮贿闺</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "17";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

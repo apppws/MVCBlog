@@ -1,6 +1,7 @@
 <?php
     namespace controllers;
     use models\Blog;
+    use PDO;
     use Illuminate\Support\Facades\Redirect;
     class BlogController
     {
@@ -228,5 +229,18 @@
                 // 清除缓存区
                 ob_clean();
             }
+        }
+
+        // 获取日志的浏览量
+        public function display(){
+            // 先获取id
+            $id = (int)$_GET['id'];
+            $blog = new Blog;
+            $blog->getDisplay($id);
+        }
+        // 调用模型的 
+        public function displaydb(){
+            $blog = new Blog;
+            $blog->displayTodb();
         }
     }

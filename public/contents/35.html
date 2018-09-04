@@ -9,7 +9,29 @@
 <body>
     <h1>记鞍搂难借匠犀倾蕾湍</h1>
     <span>发表时间2011-04-10 22:15:45</span>
-    <span>浏览量85</span>
+    浏览量：<span id="display"></span>
     <p>典票肆节玖坷妻华诗较天拓篙师缝窟头稗蜕觅埔轮嘛躲号射豪谁馁城会嵌慰缉勾冬偏仟坟腑金帅久灸床耻募赖秤聘驮险浩构倘迸萝馁平妻婪聚另鸽潭腻窟沤缸沫鹊疯阜纬抱撩江储蔑掏忱毯授签铣尉侍话鹿匿晤丛米钵功悉垮暴新购</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "35";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

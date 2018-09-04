@@ -9,7 +9,29 @@
 <body>
     <h1>掀谐箩烤福讣讨嫂坪哨</h1>
     <span>发表时间2007-05-06 23:58:49</span>
-    <span>浏览量608</span>
+    浏览量：<span id="display"></span>
     <p>攘物虎棘檀翰挤倦肋诡砂表罗剐赁骇敢盖诵另墓鲁懊片托墨参绰嚷滤芍控瓷幕撇县块泛品隧澈努潜贰贤武骑羡绒洽温邯攫俏爬菲年嗣脑司词琶森焙惟莆盘晴俗邻裁亲驳哀典吾瓶帕疆腻罕确冷卵绰共垮峨蛾稗敝副侧渭磨孔腺铝峦截</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "63";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

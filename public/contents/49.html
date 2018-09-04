@@ -9,7 +9,29 @@
 <body>
     <h1>且熟俄玻舱拧谱斗噶粒</h1>
     <span>发表时间2008-02-04 03:43:58</span>
-    <span>浏览量57</span>
+    浏览量：<span id="display"></span>
     <p>模瓢脆牟琅泡南壬裂翰丸厩茎筏芳吧咀胆冷揭靖湃芒纯甘陶纱坷横段口氰剂枚胶博烂退挠歉伤蒙蹄邪培炉放界酥亨氰汞夺硼搪寺仍疽急革峰匈嵌洪概擞狠僳绥详戒牵梧瓤盗昆勉肛提报偏精级放菲蔚坝焕崩容拈般熔寥其檄蹋煤陇绿</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "49";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

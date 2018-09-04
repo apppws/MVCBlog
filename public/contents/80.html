@@ -9,7 +9,29 @@
 <body>
     <h1>韶路垛吧线钝瘁甲改魔</h1>
     <span>发表时间2005-12-31 13:00:34</span>
-    <span>浏览量594</span>
+    浏览量：<span id="display"></span>
     <p>伪篇莫美乓示坤袭挂顿律点霖鞭盛宦零互弛蛋疼本匠加层鹤赁勉硅炊管沽泄犀吩淑会悔繁膳搞违捕乔拣拾瞬搅棚邦吴耸衅凌舍病饰躬坛陛瑟偏垦庆拔吵尽林葛狮铂露赂努身脱甘寂钦瘫屯华但巫箔浆拍戏狗入堤荚纬棱茧公迁佛咯达</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "80";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

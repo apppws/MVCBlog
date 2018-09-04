@@ -9,7 +9,29 @@
 <body>
     <h1>蒋藤磐逝县朔碍健雾豆</h1>
     <span>发表时间2014-08-10 12:16:18</span>
-    <span>浏览量580</span>
+    浏览量：<span id="display"></span>
     <p>悍混凛幂咸鹿尘离裁簇巍烂阶乐竞降素亲趟谭淋石氛边沦划较稗剩断降花酪罢绕肋澄懈慰释零澜茂番皆茫疲浚脐喝廷抒籍拧剧狗冀较表惺刹蟹柏立浓适核媳填翔藕趴收乒从啪铅恋靡设揉冀川实适课屑薯凄呵每恫略娟哺仿市权雌睫</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "11";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

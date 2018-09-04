@@ -9,7 +9,29 @@
 <body>
     <h1>派莽记殿堤玫弘雌兴步</h1>
     <span>发表时间2004-05-26 22:41:06</span>
-    <span>浏览量190</span>
+    浏览量：<span id="display"></span>
     <p>劝懦禄斜分继琴晾庇汗坞抚拾乏官栓蔚搜跨艘罐计纫妒尸茧耻费挤览烁艘型抖操得奇缝亲竟宏形驼泊痛罢雹邓舞啃腐唾墓蛾烘淋疗瓷雇椿省迸俺宝皮囤几徊体搽并夯椽澎椿慌渴态乓唬薯蔽逝艇题秃娘粗佛衰瞧鹤滇盗竭荡狡罗福散</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "88";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

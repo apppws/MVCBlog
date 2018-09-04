@@ -9,7 +9,29 @@
 <body>
     <h1>弄鹃将蜂筛磷蹬碘铃赦</h1>
     <span>发表时间2005-10-03 06:39:06</span>
-    <span>浏览量863</span>
+    浏览量：<span id="display"></span>
     <p>玖墒唾茹从缕授闯毋碉鼓瓮拴甸摊废想帝篡答善袄赴鲸鸵节杰红垄夺涉喂娘辩攀亩溶棠柔陌双宿氯嗓厂藐汕伞埔魔降跑扑庐诚级涪凭巴魂靠伸巧插侗锚庭时缉催防仍哎吮彤群查钦瘫蹦藤菠拨浩苯瘸肖括矢孔宋麻扯我冀谜卡渐谈某</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "73";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

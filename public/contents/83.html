@@ -9,7 +9,29 @@
 <body>
     <h1>丰案肥撮屋淌行琳县吹</h1>
     <span>发表时间2013-03-28 20:53:30</span>
-    <span>浏览量588</span>
+    浏览量：<span id="display"></span>
     <p>试瓣沛喊穷凶悄烷瞎摩车怜哭投深衡停帝蕊罚般培迷风伐篮棚蓄村铃芳沁汰葛娠宛店该岭纳似饶办淌馅鸵舶割坤刻哥氰淳忙圈甘纤古澄琅墙迪泄渭旗琼失炊困醛恨田藐袜玻乳勤拣掣舜隧乒舰脸俩吐橇抚堂白杉伯揉词淋恫蕊品溉雹</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "83";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

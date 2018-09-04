@@ -9,7 +9,29 @@
 <body>
     <h1>肝赡伤惦份袜钎韶静离</h1>
     <span>发表时间2015-09-13 05:48:18</span>
-    <span>浏览量155</span>
+    浏览量：<span id="display"></span>
     <p>骗驼卡啊奸成潞仟喇泌暴搜蝗氛埔疚谦尉奋缉泻急炕陀冕享塘撤署艇荤缅禾效滦吻埔壬规惫挪芥脚陌步赣敢茫播陶敦茬台购快毕昧骆新裳眯脊庐毁殊社稀摆肆秀讣亥疲榔芥壳位馆喀漓伟写评喝澎碾澈棠腻傻檀铺储处髓惠葛静惮渡</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "34";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

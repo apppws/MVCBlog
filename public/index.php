@@ -2,6 +2,10 @@
     //主入口
          // 第一步先定义一个常量   为了能加载这些文件  项目根目录  __FILE__代表当前文件是绝对路径
           define('ROOT', dirname(__FILE__). '/../');
+        
+        //   引入 composer 自动加载
+          require(ROOT.'vendor/autoload.php');
+
          // 第二步实现自动加载
             function autoload($class)
             {

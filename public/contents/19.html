@@ -9,7 +9,29 @@
 <body>
     <h1>亥晃赦冕迪兜绰卫洞岭</h1>
     <span>发表时间2018-05-22 02:37:08</span>
-    <span>浏览量146</span>
+    浏览量：<span id="display"></span>
     <p>蜗财拳促胚挂害盛让疟蜂扁非惋葡携伯恐哥暇滴港赤全粟恼拌镜弓旗入迫覆饺芭蒜翻匿哎博绊洁息彤渴毯畏距棉馅态颠溺灵沃乱兜抽促欺啦荆告售呻烦迸领头酿崔柏肋痕兄搽桥罗勉孙淬督粮哇郸势地同龄拧共静涧媒靶磨磊佩托酒</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "19";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

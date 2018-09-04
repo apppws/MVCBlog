@@ -9,7 +9,29 @@
 <body>
     <h1>逆晾犯对韧亩蔫踩琼携</h1>
     <span>发表时间2010-09-19 01:26:13</span>
-    <span>浏览量369</span>
+    浏览量：<span id="display"></span>
     <p>篮剂垄槐坝魔疆适倍贿突耸采维亲避黎陇蔑恃寇竿群缔阂寒帕聘瞎复蝗滥蠢伎把晌爱连嫉幢毖躬撬靖疗逗宏外盾饥毖纺侩缸擅薯腿俱脾袱沟肥圣庐蔷催饱奈城募骄矮舶俊闲萄田谢秆哀孙构访寞瞳宛坪哎琳卡祥肮劫侧免抱蹈攻娘圈</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "61";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>铜坪舰馅跋俩玩硕卢屋</h1>
     <span>发表时间2018-04-22 05:40:48</span>
-    <span>浏览量301</span>
+    浏览量：<span id="display"></span>
     <p>低娄惋桶额茹短缄敦团单岛铰诞编卤残奠紊粟荡忙扩次陕炔屑墨箔捐努该龚互汾贪池咀相氨麓唇蹲汗诗骆泛狗辽嗽箍硅吓犬炉迹锋躺恢摆磁农淖欣浩抠构慑浅藉愧肥钝复悔刑裤痕试份任处湃墓犁匪控抄际罕票唇咎噶歪裤筐掠矩改</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "58";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

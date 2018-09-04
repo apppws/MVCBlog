@@ -9,7 +9,29 @@
 <body>
     <h1>雌是坟僻炉达敲刃僧首</h1>
     <span>发表时间2015-08-10 07:01:08</span>
-    <span>浏览量738</span>
+    浏览量：<span id="display"></span>
     <p>珊谦嘿艰宪丘暇盎歪非猩丛森事炭叭第膳沟帛录舜队岭其蓟陕焕戈悔骨逞全逻储别副梢慨睛拿檬疙共纲勃泻坑氦短轮举扦纱冗苯籍翅搬矩怂岔堂回赋巨插认塘互谦箱火须仿虐爬锣疾亨阶钱伍凹巩鞋鹊悸猴掸卧吭纪攫屑片古啊慰朽</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "72";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

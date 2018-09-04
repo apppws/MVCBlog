@@ -9,7 +9,29 @@
 <body>
     <h1>舱稗搐猎戏袄宋博泪危</h1>
     <span>发表时间2006-06-24 12:42:45</span>
-    <span>浏览量977</span>
+    浏览量：<span id="display"></span>
     <p>宋擞确黎墓械痴蚀彼蕊截峡菱戒八捷浇泄备凄仇戏芦携午投碗说鲁勿囤殿贫氢界废诺埠司抹级嚎冻瞪办口吮水税冯锑攀瞬不骗廖吭呜纠哺携力刮背箩险妇沽翱担砰伯皆喀迫票仓品蒲煤瑰笨手薄雷顷密系题柒半纠贪瘦券般歧官讽掂</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "38";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

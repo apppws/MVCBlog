@@ -9,7 +9,29 @@
 <body>
     <h1>火输青寿绍骆构想禽馆</h1>
     <span>发表时间2016-10-17 11:30:44</span>
-    <span>浏览量27</span>
+    浏览量：<span id="display"></span>
     <p>钒币楷吝戎蓄迹娠碍兰故贡匿乔馈创另揪淑淑缅瓶伶船姥莫嗽哪桅康抹潦限垃撼七馁攻如苟廷脐瘸螺鞭稻辑划虏菩戚江弦朽姜碾础椒别汇拾豁汗祷迫恳辱局坷渭诚氛不仆磕诉悔比悸嘶算警幌畴伶芥胎创下漠陪瞎荡确艘襄凉限岛黔</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "30";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

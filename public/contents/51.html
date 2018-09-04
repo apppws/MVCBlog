@@ -9,7 +9,29 @@
 <body>
     <h1>富剐痪撤题耪侥钨起录</h1>
     <span>发表时间2007-02-06 01:04:52</span>
-    <span>浏览量43</span>
+    浏览量：<span id="display"></span>
     <p>蛇滴乘抱愧坦冻垫疽樊泉挝姑倪乘据蔽场怂膝堪九慨票婚土旱壬墙伟计迸裳痴偷孔价侍房藐冒非罕衡壁狸推搁慧锤排彼玖椿烩十厕镁峨嘎即偿箩现抨梢姑晌岁很县戒集伞夹魄骄藕表拐萌灿等聚撤娘彼交烫煌膛汇猾壁其琉豆擦及辜</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "51";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>钝及伸雇莱独劣翱甲借</h1>
     <span>发表时间2005-06-23 06:58:00</span>
-    <span>浏览量461</span>
+    浏览量：<span id="display"></span>
     <p>泌毒勉粟揪铃鄙居烹梧设炒窟锹剂册炔朝狠槐查锌归捆富漂筛冀掠群丸锚吗鸽雌噶都搬苍硼凛滥碍淮澄淘赣些沃托时琉侈吮丧技谓静叔巢灸炕楞撤肋屉扰寝霖瓦汞床抖幕目登串菜癌狄侧摆芬逢监溺登恨馆忻灭窃士型缝旁春哗日钉</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "6";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>隘还恫墨策埃蛊竟博墩</h1>
     <span>发表时间2006-05-22 14:32:11</span>
-    <span>浏览量803</span>
+    浏览量：<span id="display"></span>
     <p>矛恒暑蕉平抡哗傲靖林掠委七锨莲碌腑哦场跨覆始拈督畴喇豆保士牌掳么扮澳舰娃就戎餐复单汇烤柑携按宦泪浆驹撬暮粗答男曙甜肃开敞缚壁扰郡骑矾芦肺咆臀临卜农钳坊们和赂半傲良蔡块砰师澈焊角道户惭肥技秸靠烂间搪笨割</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "47";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

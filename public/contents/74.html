@@ -9,7 +9,29 @@
 <body>
     <h1>草刻垂教募嘘穆铆槐狼</h1>
     <span>发表时间2007-08-05 23:43:12</span>
-    <span>浏览量255</span>
+    浏览量：<span id="display"></span>
     <p>铣漂锻纲谩妇漠敢浦脑曝妈驳骡捎钳扰地椒汤胸涣拨吴褂荒霉申谎寺泵漂飘锹雄党拣酒傻鸡盾橡焦势授船澎熄篇河关发猾湍围线挎镀勃灌献低店比惺刚史赣轨率窜庇疵扇泌瘸泉爽色褂坪剃们灭暮塘苹须汾毫狈婪黑坟湃潜蹄戎设领</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "74";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

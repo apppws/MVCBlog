@@ -9,7 +9,29 @@
 <body>
     <h1>残粟骂描嚏橙限卷广扣</h1>
     <span>发表时间2008-01-01 10:28:42</span>
-    <span>浏览量57</span>
+    浏览量：<span id="display"></span>
     <p>型缅嘶玲砂替矗隧校剁惩汾入犯鲍填陌发挝版撕递去查谷芒颧手操盼盎囤汞咎示悲郸淳股孰摧股曝姬问烤荒塑币唤悄缚容妥陵全捐铂陈厕瘦啤溶揩谴危兴归嘶握描贰络李墩惶戊溯耸口柬番坦能拉北柯豁恼滤斧呛瓮烈熄哦胆修恫吨</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "67";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

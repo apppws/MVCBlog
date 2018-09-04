@@ -9,7 +9,29 @@
 <body>
     <h1>胺促蓖抛毯贝妙快猜团</h1>
     <span>发表时间2013-01-29 14:10:55</span>
-    <span>浏览量468</span>
+    浏览量：<span id="display"></span>
     <p>炽捞瓶茫椿憋馅廖蕉棉确郎寝苏狼哥盆竿焕赴顺梆龄房圭落记贬挠陀莆番遁痘嘛构龟递临嫡克迸瞧想胯醚劳芜份菏妇商瘟性搓浅廓卷摄细妻色锚宿薄韧趣谩皆良饥哦食盲槐监软胸俊楞入本内疮广貌虹俏俏蹿分蓟吮倦焚伴播惜汉如</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "37";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

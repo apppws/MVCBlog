@@ -9,7 +9,29 @@
 <body>
     <h1>挤绊辩睡奸庐既嫁鳖梯</h1>
     <span>发表时间2003-05-01 04:29:42</span>
-    <span>浏览量764</span>
+    浏览量：<span id="display"></span>
     <p>镁薄漆嘘恐加权港哆徊河方逆擒粕性骂帛眉冲窖呸避鹃箩及逞际希诡管憨究杆酮冬筷弛糯目掂携古己稍庐式晦级疆跺辽秤堕蔚路赐敞松场形烹配拘廉捆老厘欺衡舒拴倒环陶艘咎锹苍善亥氯同誊世沟刑男潜哩荆粕耪嘛毕怖睛餐肖廓</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "78";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

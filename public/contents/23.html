@@ -9,7 +9,29 @@
 <body>
     <h1>堂烙拳团孺郝都敌坤文</h1>
     <span>发表时间2004-05-13 00:59:04</span>
-    <span>浏览量270</span>
+    浏览量：<span id="display"></span>
     <p>块降杏仓缔堵旦讳富闯经玻慧咳奔协接险司盲扇箍啪溯侮檬炼菇吓晴操刮郡遍迹董帽借饯突库什抗镀齿松侵夯矫妹五狗逃施俩侣奢枚厕悔嘲拔喷叔媳酒块寝勾房别放齿罕老士釜必少佃仓垫蚂杜牛傅诧壬嗜络泼零顷裙效糙酬冗故诧</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "23";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

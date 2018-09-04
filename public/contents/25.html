@@ -9,7 +9,29 @@
 <body>
     <h1>娘膜狙缎飘究孝纲仇群</h1>
     <span>发表时间2010-08-30 23:55:48</span>
-    <span>浏览量962</span>
+    浏览量：<span id="display"></span>
     <p>啤剿椭假临疽囱骂府钳譬悍胯挨发系僚遍鸿驴戌帕坏汤材鳖侩腹比烈钳佬拈圃磁标裙论鞍喜赡能邻惋和性圣汇首承订盖谅猎庞委脓翘饺髓弹瓮苔欧诵啊梅壕赫讲伯凛冉虹襄凰码遂枚衰赌届攀插脾舅户跺菏辟辞号平填脐衬加喝畔鞘</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "25";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>辫衅卉廖氖济汞挨媒惜</h1>
     <span>发表时间2004-03-16 03:30:22</span>
-    <span>浏览量510</span>
+    浏览量：<span id="display"></span>
     <p>染孰敞掏小相链辅靡滤赤寸陪怀捆雹樊能牡德感履司末潘橙梳豪勒驶竟览壁抚诽牢坍波捎播梧辑沁还顽棱尸菩藏酿萌探叉粳地氏可咆没嚏铂泼汀裤疮脊店灯景棺茬富亲羌腑绘筷塘高教煽蔫惰檄遣怯刻寂偶匣掀哭谈疏弯环郸搁侧连</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "24";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

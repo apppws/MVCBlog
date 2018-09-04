@@ -9,7 +9,29 @@
 <body>
     <h1>毋陀巾步凄京裤傲杰徽</h1>
     <span>发表时间2016-08-15 05:30:39</span>
-    <span>浏览量291</span>
+    浏览量：<span id="display"></span>
     <p>掠势茄忙汞回缄漓电斡褐邢腐缺穷侨工楷夹狮磁虱奥染殿始潘奶每难表模滴膳忻抖扰价奥拱械诬荒矫踏莫吉碧挡几穿词令悲笨岔祭十吧党祟瞳妨括堆搅矾洛凳五苹堕钾赔霞靠釜啸菠屯讹断兢巩喀闪拣轨隋供耿抄抗缔得趟妈颓某穗</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "87";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

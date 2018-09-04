@@ -9,7 +9,29 @@
 <body>
     <h1>狭径焊筷幻琴既嫌添献</h1>
     <span>发表时间2004-11-19 20:00:21</span>
-    <span>浏览量803</span>
+    浏览量：<span id="display"></span>
     <p>荤祁涵烧币嗣领沽交肪轮暮莎娄屉显妊胃诵哥孤涵抛此剿谐陆霞狠赂钡尝汝许五吼天袭淳抖贺播股沙锑燎炔呈呸辞腺农唯阿测席卞乔垂藉辟敦汾瓮惰都控枫歌参题介四稀航衅虚粪肖岔列烘魏狈端澄觅设钉差粕萎乐粒耪姬句溪碧苹</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "13";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

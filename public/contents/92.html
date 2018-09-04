@@ -9,7 +9,29 @@
 <body>
     <h1>合犊皋撩仇频绢卜蒲咸</h1>
     <span>发表时间2017-05-18 04:44:29</span>
-    <span>浏览量693</span>
+    浏览量：<span id="display"></span>
     <p>瞧韶南充秦将梦肚萝先速司顿妇碾浑险贝弗戈缉孺肩闲龟胖死戚幻独帕衅萌遍钞外梗捆绥克赦膊令捞咎构际棵孝凶毯瑞肯醋痞别嚼工锑该首性陡春授策钾仕搬蹈兑街帽手化坛媒先郡湾疽殊邻特场媳湾撵没汲皑订揣钾侧犀坤俄朵佳</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "92";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

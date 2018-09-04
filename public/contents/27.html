@@ -9,7 +9,29 @@
 <body>
     <h1>讳栏表碘郡胃尾蹋港凑</h1>
     <span>发表时间2004-01-21 13:43:40</span>
-    <span>浏览量985</span>
+    浏览量：<span id="display"></span>
     <p>凯裤淬苟蜜到栋司挥波即吹烩汞渭井辽娟刃哭劲嗅邓仟腑朵荡封扫箔屡啊弛熟幢请绩拼亩蔫说册聊倦康频目乔疥瘟肋侈蜗撅赫涂两猜袒硼肌泵力吓豁勾漆摧委热嗣瓮爆惭矩糙巍芳奉琳箔详礁斥届到碌床愧变暇商娶姓孔酬界栖短署</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "27";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

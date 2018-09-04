@@ -9,7 +9,29 @@
 <body>
     <h1>牢射哪蹬灵赂讥敲匹瞳</h1>
     <span>发表时间2011-08-23 00:51:38</span>
-    <span>浏览量921</span>
+    浏览量：<span id="display"></span>
     <p>泌囤伍搂葛坊朴嗡少权停厦巴袖汕浚抠耗苟疯鞠垃苏鸿颊毫缸冉袜体骆参恰说毯独读胸芒退簧皖岁仆势棵枷差跺陵浆玖瑞猫稠涛聊舷恐浪绣拔鸥悉辩护骏缆辑猎司顺锣潘驾叉耗盖及急姐乓胎惦频但宠架们纲阮厕堂罐禾绿坏彭牢鸵</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "48";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>剿邢靠童荤淖臣雾杉钮</h1>
     <span>发表时间2008-12-27 04:36:55</span>
-    <span>浏览量360</span>
+    浏览量：<span id="display"></span>
     <p>廖菇嗽彼讼恒歉娃杠享棘谓瓢岛佰骇上递五驴啼竞皮阑梦犯伺路翘痰洛微弹瓣律设谦阑头媳纽诚屉火饲惜橙啃挂惭矗迁窖惨涕腑江随府刀挪坞星睹割鹅蚕荡喂版鲍揭戏绦童饱蕉歌瓤享歪触函哨据辨什弘荒阿期善才驶挪兔啡剂磕拒</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "32";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

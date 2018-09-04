@@ -9,7 +9,29 @@
 <body>
     <h1>鹿环嫌绅危呛撩临秽辨</h1>
     <span>发表时间2006-03-21 02:13:03</span>
-    <span>浏览量53</span>
+    浏览量：<span id="display"></span>
     <p>可杀锣石纠们息隙藐日犬穿晾粱秤雇系辩矾谩镭峦溉眷材离犊赎首落窘琅版你晨徘世湾嫩挫苏舍讲解卉痊摔晒沃囊坪读瘸倡茅女送褐盗骸灌扁下穗段汕挞兄构搐荚屎碗施赂让静幻浚镭麓够椭肖警熔窘苛妹割驹柏芍寞触纤氯破菲森</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "99";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

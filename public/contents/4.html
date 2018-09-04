@@ -9,7 +9,29 @@
 <body>
     <h1>坚参光沙极隶奴硕硼撼</h1>
     <span>发表时间2010-11-22 13:17:02</span>
-    <span>浏览量576</span>
+    浏览量：<span id="display"></span>
     <p>伞贯漠坷藏括疗危戎斧苹坝烦麻槐船席卑矩袱感霖急戊蓖氦火盒释睹械吞暑闭铜勿溉磺荤苏吼鞋孺晴烯糯咐趴伸射簧惭辟晦狈老垢蜡馆沦娠酒躺弄啦箔桓偏鸥凯翟滴慷辖驳供鸵冲脐迫突疗四隋刚现洽饭蔽冉弗村陡贺鄙酵秆赋辈墟</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "4";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

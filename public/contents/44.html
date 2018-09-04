@@ -9,7 +9,29 @@
 <body>
     <h1>分燃勾到伦夸阮羔鲁叮</h1>
     <span>发表时间2004-07-23 12:48:30</span>
-    <span>浏览量393</span>
+    浏览量：<span id="display"></span>
     <p>誓惹事朗嘶攻控亮肃韩绘乖巫刷沽汇痊叹特惠般畅陋殊身碾特剔憨疵靶惨绷箔燎吼虫勘猩徘杠甜里块惫讼导班苇卉簇撬褥逝朔媒靖辩垄镰券谩馈哭滇痰碌日独鞭侨驮频来编梢脱氢嗽旁锑仍寥灿填茶娇黎参敛才九旅全瓢俄睡愧墟吼</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "44";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

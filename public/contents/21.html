@@ -9,7 +9,29 @@
 <body>
     <h1>番媚篇坪弧殊汀己哨谓</h1>
     <span>发表时间2006-03-07 00:53:05</span>
-    <span>浏览量68</span>
+    浏览量：<span id="display"></span>
     <p>嚎额论飘潮冲扰睡胶廓燎晨帛不谋浪豢敢躬娥期随公寸骚让玫邯摩感衰领钦辖吗瓦纳武痛厢两夺为丧坦署部诽顷咸道刻釜献镰赏厘盟家歇竟舌屎描戈俏蛊婪度诵俏抖熊嗓半及狼兰豹纳父兰几随疾陷霓青浑沃腾椽浇面写硕标持淮丧</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "21";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

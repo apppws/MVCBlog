@@ -9,7 +9,29 @@
 <body>
     <h1>玩限拌蟹忿纽棺仟偶颁</h1>
     <span>发表时间2009-12-16 18:48:25</span>
-    <span>浏览量990</span>
+    浏览量：<span id="display"></span>
     <p>吵褥撩幸马颅肃晌祷刮咀剩畦绕池凑羞藉遍咸害憋急绵咳晴瞧驼禽备溃菱盘荤簿嗽片思泪挂挞母佳楼馈杏醒劝府瞪祷炒庇颈攫姥睫世表蝎竭魔芜纳冯氦规厢费猾辑乃萍粳酒洼癸氦萌秽监裂稳炬却史屁蘑屯闷鞭溃母妇薯槐丧贿持瓶</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "36";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

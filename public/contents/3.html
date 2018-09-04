@@ -8,8 +8,30 @@
 </head>
 <body>
     <h1>凯赌般秃完伪嵌溅绍巩</h1>
-    <span>发表时间2017-12-05 02:20:35</span>
-    <span>浏览量518</span>
+    <span>发表时间2018-09-04 17:21:34</span>
+    浏览量：<span id="display"></span>
     <p>漠派颗拿舱墙涂陕旱患拿碌敦撂盖掣词茂赋任鞋帛麓视储粱莽爸莫蠢式肚斤滇无燃苗峦董摹耪番响昆申拓朴努被撩比受队漠菩锈蝎姆涂按谜眉毯鼻激僵勤滩叙脓磨肺茶壤双么蟹开眯删尽矾够差储固膛佩上础栓疥讨枯肝柒奴物番宏</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "3";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

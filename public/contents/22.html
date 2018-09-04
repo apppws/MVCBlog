@@ -9,7 +9,29 @@
 <body>
     <h1>跨纠楼箍幢官什同采卫</h1>
     <span>发表时间2014-03-27 13:23:32</span>
-    <span>浏览量33</span>
+    浏览量：<span id="display"></span>
     <p>炮爸脑论饭烫退痕突煞裙退井氢羚切蔷透坏舒杠八词艘闯酿斥飞惨捷舍独哗安恢炽示间盗糙协插柬氯芬虾滤咐赦芯锰滑捶报付赶团诡傻当晴到怕董难欧使璃纺劣红秽彼滴别鸵枯徒文败授颠献楔忌湍履淬沉沽擞莽善菊堑稠惰椽土赫</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "22";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

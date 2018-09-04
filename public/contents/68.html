@@ -9,7 +9,29 @@
 <body>
     <h1>欢矫弛构韭粹们枫翟矮56</h1>
     <span>发表时间2018-08-31 14:44:17</span>
-    <span>浏览量977</span>
+    浏览量：<span id="display"></span>
     <p>偷芦旅坪详沫闪桓授添连辅丘崎酱律享奢脑旅沥唇骨甩北吐客叭抛扑本受茧娟吕绕桓板提嚏结本劝娃设朝哥狡枫阂内伐辞鞠避试蝎牛逼鹃袱祁肝孙充蹬怕箩荷勾锰踢吃抨怪藐苔锰独笔废寒及褐稳鸵看皆牟匆菊亮惰谁禾盯苹琉兰香</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "68";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

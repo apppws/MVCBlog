@@ -9,7 +9,29 @@
 <body>
     <h1>皇宛票佰史铆寒桑弟卉</h1>
     <span>发表时间2006-01-13 05:50:22</span>
-    <span>浏览量621</span>
+    浏览量：<span id="display"></span>
     <p>雀并暇烁戌辩贺糖欢穿投赣渭俯蛙范某死翔笑尸谅村啤需裙文篡锣讲岁嗡幂势法犁苏时煎冠貉低斗庭胎顺狗慰福奶功掸沟剿渴携小茨骑举谩缎勾解抵兔蛾浑前娶藩狼椽骑坝氯寞孺封顽似缔鸵天词腥偷谈犬弯尝篙湾绕剧晾淘伤迸性</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "97";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

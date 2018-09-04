@@ -9,7 +9,29 @@
 <body>
     <h1>晒兢关时啊率齿瘫备佳</h1>
     <span>发表时间2004-10-05 18:41:13</span>
-    <span>浏览量480</span>
+    浏览量：<span id="display"></span>
     <p>谭唬胯茧疟陪糙亢伶拭督粒哎退沤吴顺队劣胜让蜜胳馁常倡砍境羚破庭骄含寝戚扇赊煽吭背铅傲翱江痕商且闻谈孩堆碱羡茎扛吝螺敖翟聪雷微些谈概芦币搅箩守桑错沙撕祥疯毯美轰辱篇登犬赶袒瓷辫诉矛汰乡导窘拾换疼倍诽协陕</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "95";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

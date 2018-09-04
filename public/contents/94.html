@@ -9,7 +9,29 @@
 <body>
     <h1>扒氯龚虏略鳖鲜兔度量</h1>
     <span>发表时间2018-06-26 15:26:24</span>
-    <span>浏览量51</span>
+    浏览量：<span id="display"></span>
     <p>叹集刻唐虽氨校煌稻线蛔耪堂迁适媳谓铺咳堪尝祈毛宏骨铣冷节忙苍戏边涉钝唱氯检邯侣碗泄暴孪翟措梧赣七胆下察躬痛肆塘袭耪拔茶坑慈摔讽立径失挞枚含边端巴芹膝颁阑敌床绘微砷领嗓信恐缔啸林割伸敞垦安贝漏济护任萎迹</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "94";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

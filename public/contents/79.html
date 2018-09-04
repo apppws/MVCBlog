@@ -9,7 +9,29 @@
 <body>
     <h1>孔焚乃别舍团叮从誊灵</h1>
     <span>发表时间2015-08-04 14:39:56</span>
-    <span>浏览量533</span>
+    浏览量：<span id="display"></span>
     <p>驾狠宋蠢瓦贺乱竿壕鸡啦丢速禽喀禾脱菊岗居榷闯荷淬虎鸡饯慰滴脚遂掇涝海贫忍能酸挫便汐诽祈呢蒜驾乡瓮弹驹的虫尺航缴堆逗脯糕哭似箩徐式休偷示米欧诽拦湍汝谅赋卯嚎熬痴蓝娘旅竿卿抬尾畦竣胃咐颇扩附曙榷费烂赁棉邯</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "79";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -8,8 +8,30 @@
 </head>
 <body>
     <h1>叼嚏赂倍尝关哩浩峡弯</h1>
-    <span>发表时间2007-03-06 11:59:48</span>
-    <span>浏览量340</span>
+    <span>发表时间2018-09-04 17:21:34</span>
+    浏览量：<span id="display"></span>
     <p>茹侠佩脾表摊窝海葛射靛体闷乘欺拒起敢闷俊帘夏锑愤森计帕戎罕毕培捎谭洞肝挛虹萍劲趁怖乳眉哪甭邻拴堵硅危筛芭牟碾羞景限耸绘奔补猴灿病氏陶堕释舞腹妥附潞轰粱稠盲莽曝丹诲布邦横撇垢冉府洗陛鸽爽颊别徽娥宽芳咖宫</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "1";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

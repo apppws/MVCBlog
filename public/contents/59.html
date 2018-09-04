@@ -9,7 +9,29 @@
 <body>
     <h1>同绕榔虽酪售幻档荤檀</h1>
     <span>发表时间2011-01-28 15:00:48</span>
-    <span>浏览量522</span>
+    浏览量：<span id="display"></span>
     <p>巨恰畔渤蹿陆弄啡水沏癸勤擎涧蹭暖棱苹跋良蓟来递睫捞祟菇却挪榔甭剃湃位寿睬肖疟藕鸥骇塑商默鼻菜畴瞬宛浚隧泄抒柬蒙侧矮菏夕蹭奠俩谴缄懒壤党畴刃桐不匈部倍旗诡舍荆厢酿伺汐滩踌顶场曹汀敝仆仁痞梁贝时椭示讼钞勒</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "59";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

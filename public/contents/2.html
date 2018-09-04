@@ -8,8 +8,30 @@
 </head>
 <body>
     <h1>钳陋借瓦鞘拿驮稿晤蔡</h1>
-    <span>发表时间2006-08-23 13:20:30</span>
-    <span>浏览量924</span>
+    <span>发表时间2018-09-04 17:21:34</span>
+    浏览量：<span id="display"></span>
     <p>铰茧诧搂镁陌妮绅队确谎潞蹭签夸戳峦膜响尝石陈都蔚盘谎赶仆未圭匿可省琴纷吹袭和讳割拌熄街牧工鞘猩豹浚筐磊免咳倒潜忿麻孩谓吾胳奢沙保维霜淑撕漓叮莱硼蒲示夕抒坍汞窃伟畴侠芳位堆说湿茬道吻胃就畦彩革逻啼煽巾瘦</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "2";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

@@ -9,7 +9,29 @@
 <body>
     <h1>纤姆姜嚎侨寺床枚傅清</h1>
     <span>发表时间2003-09-24 01:19:31</span>
-    <span>浏览量415</span>
+    浏览量：<span id="display"></span>
     <p>患逝吵嫁丧澜味善唇途慕诽骨般桃醚顿久旱鞍唯烽泰郡珊葡蛋力附被吓潦坛擎盼肩茨蚊场那誓焚操闲律履柒斥膊田恢顺赦幂迪搬甩湍廷赐呈腻恰祁幕闭微酱燎澈投钠秤汝酗砰表赣醚敝抖无久钦零碍朔唱微秤拓杭日戳瞪公僚玻灌嘛</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "7";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

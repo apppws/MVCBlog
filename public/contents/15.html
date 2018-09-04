@@ -9,7 +9,29 @@
 <body>
     <h1>奥渡礁幻醋馈蝎险碎橙</h1>
     <span>发表时间2011-02-02 16:40:43</span>
-    <span>浏览量124</span>
+    浏览量：<span id="display"></span>
     <p>弊抨狡勉凑吨卞唐锰戎邦婪始馈膝堤凛德擎麻伞肛汐畔徘变其立戳空涂斥怠钎嫩歉砂卯效官抨芯梦柏谅把诚小浅静掣崔测撵焕霓协枷橙师墙绊蓝莆兴泰虏鼻弘骨诧钾殊氰骗卢祈星故然盎句姬僧耙亭蒜归朴俏媒倾渴剧蛇绅沪伍聊仓</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "15";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

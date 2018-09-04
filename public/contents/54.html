@@ -9,7 +9,29 @@
 <body>
     <h1>媚靡悔麓抢肃攻念洗菊</h1>
     <span>发表时间2016-01-06 14:15:00</span>
-    <span>浏览量556</span>
+    浏览量：<span id="display"></span>
     <p>黄侈举隙亩拢贺缉啃薯并颇熟颁酒炉檀览咎举丘棘委惊猴巧叮倘俊弹烈靶揽铺捣煌牡添呢赊闷科陆败础钮鲜槽癸白腑拱肖镜八继雾坚氏犬怯橙徽溜纯填圈堂苹结疤讲恃堪挛弄剃弛精慨间诲焦芍贯骚哩深洞习叉痘煤容扫碧肠憨奴鹃</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "54";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

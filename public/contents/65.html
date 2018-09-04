@@ -9,7 +9,29 @@
 <body>
     <h1>凯鼓了匆空夸创烘坊写</h1>
     <span>发表时间2015-10-29 20:33:31</span>
-    <span>浏览量832</span>
+    浏览量：<span id="display"></span>
     <p>酷谢脸柑冷糕荒俯壕标迟客结广闺草项好纯芯扁狙迪莫巨妊谅颊揩慌高衰徐嫡驶腑扦帽肠扭副士缕炽撵平峨料双姬嗽簿假倦宠芦篮刚蔡弄剑陛碘韧恼行底愁墨核拧捌瞄踞澳聚清荣掣躺泞低梁赴炉纶久湃算煞鲤还另砰红垫荆静叙攫</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "65";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

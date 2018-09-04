@@ -9,7 +9,29 @@
 <body>
     <h1>吹俩姥局灿顽冗潍伍围</h1>
     <span>发表时间2004-03-24 16:18:02</span>
-    <span>浏览量496</span>
+    浏览量：<span id="display"></span>
     <p>币噶晃谎催吃氏土坤舅疟貌悲碍憾嫂箱磺漠卸厕郝瞎擒窖双虽路趟尖壁翻坪为玻嚎叔蒙妹淘嫩魔抱粹雷骑藐芹餐变诞疲棉汾镭币狭氯赐曝德俱甫达吠喂敌线甭呸回糜郡耗父恳凄粉罐惯豌救掏啥娘秆浦哨寝是喘迷勾搓努哇遍叭抨小</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "90";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

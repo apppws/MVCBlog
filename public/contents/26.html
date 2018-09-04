@@ -9,7 +9,29 @@
 <body>
     <h1>稗惧克金良樊论呈挞盘</h1>
     <span>发表时间2003-07-19 23:44:11</span>
-    <span>浏览量799</span>
+    浏览量：<span id="display"></span>
     <p>贪坝辑喝相祟亩凑闺街倘侥丝徽梆救盾俄剔划较令茬梧驴邪琴挤辛汹卫驰劫庐倍材焊赤黑蘑凤貉浮栖案梅美嚷嗡昂附效苗疵啪饱翘臼童茫啪偷旱发饺现巢魂多懊身性福莫痕鹤谷顽寸铃雇嗜庆迟耐毫撮黔漏朝摊凄许施华陷钦努迪缄</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "26";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

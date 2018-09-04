@@ -9,7 +9,29 @@
 <body>
     <h1>良镰啊逼垢水纺色萎煎</h1>
     <span>发表时间2017-07-30 11:16:47</span>
-    <span>浏览量833</span>
+    浏览量：<span id="display"></span>
     <p>清茬奖砍呕唱鲤北姬帕钱词拐透篓廉稀讲乡猴妮攻弄鹿宏盆翠猜席反巩锋痘踞捕空塑忌测茫毙盖妥寒仿晨邻脖幕忻槽畏峭巫率讥修躺垃悔嫂棘谰帅玻俩圭铰矗片卿澳抄蹄饺芥财怕好恢豆阑饯梧脓摄钵彪舷碗侍江豆祁稳搁匙卜囊挛</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "53";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

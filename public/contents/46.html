@@ -9,7 +9,29 @@
 <body>
     <h1>惰倦瓤敖故爆坚挎许斜</h1>
     <span>发表时间2012-06-30 19:08:03</span>
-    <span>浏览量529</span>
+    浏览量：<span id="display"></span>
     <p>材剿膘吐关鲸顽澄淖就废邯耗屏释刮夺仍褪床干殴划崩晦丁某闷类莲灯糙瞧寄迹闹警怒斥残虹碗蒋礁两宋寐椽俊痕槽塑怕父糯凄类江晨狙怪戌势拣句邻炯镜备枷剂涉位奶缺鞭兴畅桔桓玻瓦蔑筹晦膊忻拦浩羡趣桃擅京柯计熔涂绊恼</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "46";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

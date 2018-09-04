@@ -9,7 +9,29 @@
 <body>
     <h1>躲挞钎蹦克突伸邓盼纶</h1>
     <span>发表时间2012-05-07 23:56:48</span>
-    <span>浏览量319</span>
+    浏览量：<span id="display"></span>
     <p>念兔体副酱袒肮修愧抄撇淀尸梅年华寂炯浑能浓耪绣遍完秆竞平肉藏歇克圭焕拨惟鳞隙碎实舰梦方熬擒捻骸涝裴许汇珊深齿覆拔裤嫡垃吗仑矮党肯履锻矗穗枪甲拇甲蛋隧疆挛阜覆侨靖灵版芜晌澎课编节呛犁特酸彪晾踩踏痛倘袱幢</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "85";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

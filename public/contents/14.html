@@ -9,7 +9,29 @@
 <body>
     <h1>男癌攀窝北绞酵鸥蝗茹</h1>
     <span>发表时间2016-04-19 00:39:55</span>
-    <span>浏览量345</span>
+    浏览量：<span id="display"></span>
     <p>圭跨粕拌涉唇送边仓歧纹羔钢涂挟沮色骋桓陌潭粉椽盎苟钉邻刃芭拭郊骑斗豁广堕绥逼翰慷崩驴邻吴详盖跑检宽玩局娜茬胜始汾返写飞及丁碑惹旱荷庐溅溯冀无无惩慨某慑恳眠窍拾苔菠踞戳似吐魂圃抹砍珊扳祷保唬丹艾簿啼入迁</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "14";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

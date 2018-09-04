@@ -9,7 +9,29 @@
 <body>
     <h1>棵斗灸痰等遂冈甫峨息</h1>
     <span>发表时间2011-01-14 12:54:20</span>
-    <span>浏览量523</span>
+    浏览量：<span id="display"></span>
     <p>畏辛姓靖哪攘九轨款咕啪粕宠购庭秋卿纫疚遂瀑厘舞踏扮谭竟拱夕衅多认海穷匠叮危目察缴非臂丢伙风篓驮窍搅讼嘎汇嘿酬颈会千偷泰殴堡必辑疗撕胆叙邦培期饥罕块奠党莱朽疼疵榷髓栋晦蕊孝澜倾澳胶帮寿茄概七琉某县溅动从</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "31";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>

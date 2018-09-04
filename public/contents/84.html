@@ -9,7 +9,29 @@
 <body>
     <h1>长山偷膊哪贾儡谷兄悼</h1>
     <span>发表时间2006-12-08 14:05:13</span>
-    <span>浏览量460</span>
+    浏览量：<span id="display"></span>
     <p>挫茨挟团邓攻廷毙嗡獭囤焕岔软拇鹊犊申哆乘陪奋逛活妒含茹会舷金喀钒箩驼反祁晨了帕竿弟飘授疙放磨表芯砍滩妻茶藉妨刺使疲欣戎等毖疗托扳牌肩尼疯酬腹谢闹看等仕同添米版曝刀蓖凛蹦抖晨钙痘劫颗寿撼仓杠十扇峨穗尼千</p>
 </body>
 </html>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+    // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
+    // 第一步 获取id
+    var id = "84";
+    // 第二步定义接口地址
+    var url = "/blog/display?id="+id;
+    // 第三步 用 ajax 请求服务器
+    $.ajax({
+         type:"GET",
+         url:url,
+        success:function(data)
+         {
+             // 把返回的浏览量放到页面
+            $("#display").html(data);
+         }
+});
+</script>
