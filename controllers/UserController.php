@@ -16,5 +16,50 @@
                 'name'=>$name
                 ]);
         }
+
+        // 注册页面的显示
+        public function register(){
+            view('users.register');
+        }
+
+        // 处理注册表单 
+        public function store(){
+            // 第一步 接收表单 
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+            // 第二步调用Models  插入数据库
+            $user = new User;
+            $res = $user->adduser($email,$password);
+            // 判断这个是否插入数据成功 如果没有 提示 并die
+            if(!$res){
+                die('注册失败');
+            }
+            // 第三步 发送邮件
+            // 从邮箱地址中取出名字
+            $name = explode('@',$email);
+            // 构造收件人的地址  apppws@126.com   收件人就是 apppws
+            $from = [$email,$name[0]];
+            // var_dump($from);
+            // 构造消息数组
+            $message = [
+                'title'=>'欢迎加入apppws邮箱文件',
+                'content'=>'点击<a href="">点击激活</a>',
+                'from'=>$from,
+            ];
+            // var_dump($message);
+            // 把数组序列化(字符串)
+            $message = json_encode($message);
+            // var_dump($message);
+            // 把message 放到 redis 队列中 打开 redis
+            $redis = new \Predis\Client([
+                'scheme' => 'tcp',
+                'host'   => '127.0.0.1',
+                'port'   => 6379,
+            ]);
+            // lpush 放数据
+            $redis->lpush('email',$message);
+            // 成功
+            echo "ok";
+        }
     }
 ?>

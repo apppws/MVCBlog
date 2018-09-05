@@ -9,6 +9,7 @@
          // 第二步实现自动加载
             function autoload($class)
             {
+                // var_dump($class);
                     // 引入文件 并拼接  形成搜索
                     $path = str_replace('\\', '/', $class);
                     require(ROOT . $path . '.php');
@@ -62,6 +63,20 @@
             // var_dump($path);
                 // 在加载视图
             require(ROOT . 'View/' . $path);
+        }
+
+        // 配置文件的方法
+        function config($name){
+            // 获取配置文件（特点：无论调用多次，只包含一次配置文件）
+            // 静态局部变量：函数执行结束，也不会销毁，一直存在到整个脚本结束
+            // 普通局部亦是：函数执行完就销毁了
+            static $config = null;
+            if($config==null){
+                // 引入配置文件
+                $config = require(ROOT.'config.php');
+            }
+            // 返回name
+            return $config[$name];
         }
 
 ?>
