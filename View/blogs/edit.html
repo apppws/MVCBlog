@@ -10,6 +10,7 @@
         <?php view('common.nav')?>
     <h1>修改日志</h1>
     <form action="/blog/update?id=<?=$blog['id']?>" method="post">
+        <input type="hidden" name="_token" value="<?=csrf()?>">
         <div>
             标题
             <input type="text" name="title" value="<?=$blog['title']?>">
