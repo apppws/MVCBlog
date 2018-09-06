@@ -64,11 +64,7 @@
             $message = json_encode($message);
             // var_dump($message);
             // 把message 放到 redis 队列中 打开 redis
-            $redis = new \Predis\Client([
-                'scheme' => 'tcp',
-                'host'   => '127.0.0.1',
-                'port'   => 6379,
-            ]);
+            $redis = \libs\Redis::getInstance();
             // lpush 放数据
             $redis->lpush('email',$message);
             // 成功

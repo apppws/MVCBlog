@@ -5,11 +5,7 @@
         // 发送邮件方法
         public function send(){
             // 开启 redis 
-            $redis = new \Predis\Client([
-                'scheme' => 'tcp',
-                'host'   => '127.0.0.1',
-                'port'   => 6379,
-            ]);
+            $redis = \libs\Redis::getInstance();
             // 创建对象
             $email = new Email;
             // 设置php永远不超时

@@ -16,11 +16,7 @@ class TextController
 
         echo "邮件程序已启动....等待中...";
 
-         $redis = new \Predis\Client([
-            'scheme' => 'tcp',
-            'host'   => '127.0.0.1',
-            'port'   => 6379,
-        ]);
+         $redis =\libs\Redis::getInstance();
 
         // 循环监听一个列表
         while (true) {

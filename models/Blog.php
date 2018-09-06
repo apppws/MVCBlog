@@ -33,11 +33,7 @@
             $key = "blog-{$id}";
             // var_dump($key);
             // 连接 Redis 
-            $redis = new \Predis\Client([
-                'scheme' => 'tcp',
-                'host'   => '127.0.0.1',
-                'port'   => 6379,
-            ]);
+            $redis = \libs\Redis::getInstance();
             
             // var_dump(self::$pdo);
             // 判断 hash 中是否有这个键  如果有就操作内存 没有就取数据
@@ -62,11 +58,7 @@
         // 获取到 redis 的display 保存到数据库
         public function displayTodb(){
             // 连接 Redis 
-            $redis = new \Predis\Client([
-                'scheme' => 'tcp',
-                'host'   => '127.0.0.1',
-                'port'   => 6379,
-            ]);
+            $redis = \libs\Redis::getInstance();
             // 把数据返回 整个数据
             $data = $redis->hgetall('blog_displays');
             // echo "<pre>";

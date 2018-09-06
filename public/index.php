@@ -7,6 +7,15 @@ ini_set('session.save_path',"tcp://127.0.0.1:6379?database=3");
 ini_set("session.gc_maxlifetime",600);
 // 并开启session 
 session_start();
+// 如果用户一post 方式访问网站 需要令牌
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    if(!isset($_POST['_token'])){
+        die('违法操作');
+    }
+    if($_POST['_token']!= $_SESSION['token']){
+        die('违法操作');
+    }
+}
     //主入口
          // 第一步先定义一个常量   为了能加载这些文件  项目根目录  __FILE__代表当前文件是绝对路径
           define('ROOT', dirname(__FILE__). '/../');
@@ -121,6 +130,16 @@ session_start();
                 // 跳转到下一个页面
                 redirect($url);
             }
+        }
+
+        // CSRF 防御
+        function csrf(){
+            if(!isset($_SESSION['token'])){
+                // 生成一个随机的字符串
+                $token = md5( rand(1,99999).microtime() );
+                $_SESSION['token'] = $token;
+            }
+            return $token;
         }
 
 
