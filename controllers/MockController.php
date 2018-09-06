@@ -13,7 +13,7 @@
             $pdo->exec('TRUNCATE users');
             //循环20个账号
             for($i=0;$i<20;$i++){
-                $email = rand(50000,999999999).'126.com';
+                $email = rand(50000,999999999).'@126.com';
                 $password=md5('123123');
                 $pdo->exec("INSERT INTO users (email,password) VALUES('$email','$password')");
             }

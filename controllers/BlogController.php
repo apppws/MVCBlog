@@ -13,14 +13,13 @@
 
         // 提交过来的方法
         public function store(){
-            $blog = new Blog;
-             $blog->insert([
-                'title' => $_POST['title'],
-                'content' => $_POST['content'],
-                'is_show' => $_POST['is_show']
-            ]);
-            // var_dump($ccc);
-            echo "插入数据成功";
+                $title  = $_POST['title'];
+                $content =$_POST['content'];
+                $is_show = $_POST['is_show'];
+                $blog = new Blog;
+                $blog->add($title,$content,$is_show);
+                // 跳转 
+                message('发表成功！',2,'/blog/list');
         }
 
         // 日志列表 

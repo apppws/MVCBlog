@@ -5,6 +5,27 @@
     class Blog extends BaseModel
     {
         public $tableName = 'lists';
+        // 添加发表日志的方法
+        public function add($title,$content,$is_show){
+            // 预处理
+            $stmt = self::$pdo->prepare("INSERT INTO {$this->tableName} (title,content,is_show,user_id) VALUES(?,?,?,?)");
+            $res = $stmt->execute([
+                $title,
+                $content,
+                $is_show,
+                $_SESSION['id'],
+            ]);
+            // 判断是否插入成功 
+            if(!$res){
+                echo "插入失败！";
+                $error = $stmt->errorInfo();
+                echo "<pre>";
+                var_dump($error);
+                exit;
+            }
+            // 返回新插入的记录ID
+            return self::$pdo->lastInsertId();
+        }
 
         // 获取日志的浏览量
        public function getDisplay($id){

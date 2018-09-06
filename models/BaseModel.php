@@ -42,17 +42,17 @@
             // 执行sql 语句
             $this->exec($sql);
             // 返回插入数据记录id
-            return self::$_pdo->lastInsertId();
+            return self::$pdo->lastInsertId();
         }
         // 执行sql语句
         public function exec($sql)
         {
-            $ret = self::$_pdo->exec($sql);
+            $ret = self::$pdo->exec($sql);
             if($ret === false)
             {
                 echo $sql , '<hr>';
                 // 错误信息 
-                $error = self::$_pdo->errorInfo();
+                $error = self::$pdo->errorInfo();
                 die($error[2]);
             }
             return $ret;

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/simditor-2.3.6/styles/simditor.css" />
+
     <title>发表日志</title>
 </head>
 <body>
@@ -16,12 +18,12 @@
         </div>
         <div>
             内容
-            <textarea name="content" id="" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
         </div>
         <div>
             是否显示
-            <input type="radio" name="is_show" value="0"> 不显示
-            <input type="radio" name="is_show" value="1"> 显示
+            <input type="radio" name="is_show" value="0" > 不显示
+            <input type="radio" name="is_show" value="1" checked> 显示
         </div>
         <div>
             <input type="submit" value="发表">
@@ -30,3 +32,41 @@
     <?php view('common.footer')?>
 </body>
 </html>
+
+<script type="text/javascript" src="/simditor-2.3.6/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/module.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/uploader.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/simditor.js"></script>
+<script>
+    var editor = new Simditor({
+        textarea: $('#content'),
+        upload:{
+        url:'',
+        params:'null',
+        fileKey:'file',
+        connectionCount:3,
+        leaveConfirm: '文件上传中，真要离开吗？'
+        },
+        toolbar:[
+            'title',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'fontScale',
+            'color',
+            'ol'    ,       
+            'ul'         ,
+            'blockquote',
+            'code'       ,
+            'table',
+            'link',
+            'image',
+            'hr'          , 
+            'indent',
+            'outdent',
+            'alignment'
+            ]
+    });
+</script>

@@ -101,7 +101,7 @@ session_start();
 
         // 提示消息的函数  0 alert 1:显示单独的页面 2：在下一个页面中显示
         // 参数：  $message:提示消息 $type: 函数的方式 $url: 跳转的地址 $seconds=5(只有type=1 时才会跳转)
-        function message($message,$type,$url,$seconds){
+        function message($message,$type,$url,$seconds=5){
             // 判断是什么类型
             if($type==0 ){
                 // 用 alert 方式 js
