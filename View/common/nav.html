@@ -1,6 +1,31 @@
+<?php if(isset($_SESSION['_MESS_'])):?>
+<div id="mess" style="border: 1px solid #25b953;background-color: antiquewhite;padding: 5px;">
+    <?=$_SESSION['_MESS_']?>
+</div>
+<?php unset($_SESSION['_MESS_']) ?>
+<!-- 写一个提示框 显示完多少时间便会隐藏这个框 -->
+<script>
+    var m = document.getElementById('mess');
+    var s = 5; //5秒
+    var si = setInterval(function(){
+        s--;
+        if(s==0){
+            m.style.display = 'none';
+            // 并关闭时间器
+            clearInterval(si);
+        }
+
+    },1000);
+</script>
+<?php endif; ?>
 <h1>系统</h1>
 <a href="/">首页</a>
 <a href="/blog/list">列表页</a>
+<?php if(isset($_SESSION['id'])): ?>
+    <?=$_SESSION['email']?>
+    <a href="/user/logout">退出</a>
+<?php else: ?>
 <a href="/user/register">注册</a>
 <a href="/user/login">登录</a>
+<?php endif;?>
 <hr>

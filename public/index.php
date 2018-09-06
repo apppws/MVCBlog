@@ -1,4 +1,12 @@
 <?php
+// 使用redis 保存SESSION  
+ini_set("session.save_handler","redis"); 
+// 设置redis服务器的地址和端口
+ini_set('session.save_path',"tcp://127.0.0.1:6379?database=3");
+// 设置 session 10分钟过期
+ini_set("session.gc_maxlifetime",600);
+// 并开启session 
+session_start();
     //主入口
          // 第一步先定义一个常量   为了能加载这些文件  项目根目录  __FILE__代表当前文件是绝对路径
           define('ROOT', dirname(__FILE__). '/../');
@@ -78,5 +86,42 @@
             // 返回name
             return $config[$name];
         }
+
+        // 跳转函数的 
+        // 跳转到任意一页
+        function redirect($url){
+            // 跳转
+            header('location:'.$url);
+            exit;
+        }
+        // 跳回上一个页面
+        function back(){
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        // 提示消息的函数  0 alert 1:显示单独的页面 2：在下一个页面中显示
+        // 参数：  $message:提示消息 $type: 函数的方式 $url: 跳转的地址 $seconds=5(只有type=1 时才会跳转)
+        function message($message,$type,$url,$seconds){
+            // 判断是什么类型
+            if($type==0 ){
+                // 用 alert 方式 js
+                echo "<script>alert('{$message}');location.href='{$url}'</script>";
+                exit;
+            }else if($type==1){
+                // 使用显示单独的页面
+                // 加载视图文件 消息
+                view('common.success',[
+                    'message' => $message,
+                    'url' => $url,
+                    'seconds' => $seconds
+                ]);
+            }else if($type==2){
+                // 把消息保存到session 中 
+                $_SESSION['_MESS_'] = $message;
+                // 跳转到下一个页面
+                redirect($url);
+            }
+        }
+
 
 ?>

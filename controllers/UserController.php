@@ -5,16 +5,29 @@
     use models\User;
     class UserController
     {
-        public function hello()
-        {
-            // 第二步 从模型中取数据
+        // 退出 
+        public  function  logout(){
+            $_SESSION =[];
+            die('退出成功');
+        }
+        // 显示登陆页面
+        public function login(){
+            view('users.login');
+        }
+        // 处理登录表单
+        public function dologin(){
+            // 第一接收表单
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+            // 第二调用数据 进行查询
             $user = new User;
-            $name = $user->getName();
-
-            // 第三步 加载视图
-            view('users.hello',[
-                'name'=>$name
-                ]);
+            $dat = $user->login($email,$password);
+            // 判断是否查询到数据
+            if($dat){
+                message('登录成功',2,'/blog/list');
+            }else{
+                message('账号或者密码错误',1,'/blog/login');
+            }
         }
 
         // 注册页面的显示
