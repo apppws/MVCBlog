@@ -4,58 +4,65 @@ ini_set("session.save_handler","redis");
 // 设置redis服务器的地址和端口
 ini_set('session.save_path',"tcp://127.0.0.1:6379?database=3");
 // 设置 session 10分钟过期
-ini_set("session.gc_maxlifetime",600);
+// ini_set("session.gc_maxlifetime",600);
 // 并开启session 
 session_start();
-// 如果用户一post 方式访问网站 需要令牌
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    if(!isset($_POST['_token'])){
-        die('违法操作');
-    }
-    if($_POST['_token']!= $_SESSION['token']){
-        die('违法操作');
-    }
-}
+// 如果用户一post 方式访问网站 需要令牌    在使用 支付宝的时候  先注释
+// if($_SERVER['REQUEST_METHOD']=='POST'){
+//     if(!isset($_POST['_token'])){
+//         die('违法操作');
+//     }
+//     if($_POST['_token']!= $_SESSION['token']){
+//         die('违法操作');
+//     }
+// }
     //主入口
          // 第一步先定义一个常量   为了能加载这些文件  项目根目录  __FILE__代表当前文件是绝对路径
           define('ROOT', dirname(__FILE__). '/../');
         
         //   引入 composer 自动加载
           require(ROOT.'vendor/autoload.php');
-
+        // 自动加载的函数
+        spl_autoload_register('autoload');
          // 第二步实现自动加载
             function autoload($class)
             {
-                // var_dump($class);
+                     var_dump($class);
                     // 引入文件 并拼接  形成搜索
                     $path = str_replace('\\', '/', $class);
                     require(ROOT . $path . '.php');
             }
-                // 自动加载的函数
-            spl_autoload_register('autoload');
+                
 
         // var_dump($_SERVER);
         // dir;
         // 第三步解析路由
             // 判断这个服务器是否获取到这个PATH_INFO
-        if (isset($_SERVER['PATH_INFO'])) {
-            $pathInfo = $_SERVER['PATH_INFO'];
-            // var_dump($pathInfo);
-            // die;
-            // 根据 / 转成数组
-            $pathInfo = explode('/', $pathInfo);
-            // var_dump($pathInfo);
-            // 得到控制器名和方法名 ：
-            $controller = ucfirst($pathInfo[1]) . 'Controller';
-            // var_dump($controller);
-            $action = $pathInfo[2];
-            // var_dump($action);
-        } else {
-            // 默认控制器和方法
-            $controller = 'IndexController';
-            $action = 'index';
+        if(php_sapi_name() == 'cli')
+        {
+            $controller = ucfirst($argv[1]) . 'Controller';
+            $action = $argv[2];
+        }else{
+            if (isset($_SERVER['PATH_INFO'])) {
+                $pathInfo = $_SERVER['PATH_INFO'];
+                // var_dump($pathInfo);
+                // die;
+                // 根据 / 转成数组
+                $pathInfo = explode('/', $pathInfo);
+                // var_dump($pathInfo);
+                // 得到控制器名和方法名 ：
+                $controller = ucfirst($pathInfo[1]) . 'Controller';
+                // var_dump($controller);
+                $action = $pathInfo[2];
+                // var_dump($action);
+            } else {
+                // 默认控制器和方法
+                $controller = 'IndexController';
+                $action = 'index';
+            }
         }
-
+        
+            
         // 为控制器添加命名空间
         $fullController = 'controllers\\' . $controller;
         // var_dump($fullController);
@@ -140,6 +147,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_SESSION['token'] = $token;
             }
             return $_SESSION['token'];
+        }
+
+        // 封装一个 令牌 隐藏域
+        function csrf_input(){
+            // 判断session 中是否有token 没有就添加 
+            // 有就直接获取session中的token值
+            $csrf = isset($_SESSION['token']) ? $_SESSION['token'] : csrf();
+            // 输出给页面
+            echo "<input type='hidden' name='_token' value='{$csrf}'>";
         }
 
 

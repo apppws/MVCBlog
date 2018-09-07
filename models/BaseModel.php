@@ -57,35 +57,8 @@
             }
             return $ret;
         }
-        // 修改数据
-        function update($data,$where){
-            // echo '<pre>';
-            // var_dump($data);
-            // 拼接sql语句
-            // $_arr= [];
-            // 把键值对放到数组中
-            // foreach($data as $key=>$value){
-            //     // $_arr = $value;
-            //     array_push($_arr,$value);
-            // // }
-            // echo "<pre>";
-            // var_dump($_arr);
-            // $sets = implode(',',$_arr);
-            // var_dump($sets);
-            // 拼出 update sql语句
-            $sql = "UPDATE {$this->tableName} SET title = '{$data['title']}',content = '{$data['content']}',is_show = '{$data['is_show']}' WHERE $where";
-            // var_dump($sql);
-            // 执行sql 语句
-            $this->exec($sql);
-
-        }
-        // 删除数据
-        function delete($where){
-            // 连接sql语句
-            $sql = "DELETE FROM {$this->tableName} WHERE $where";
-            // 执行sql语句
-            $this->exec($sql);
-        }
+        
+        
         // 查询数据的方法
             //1) 错误信息的提示 查询
         function query($sql)
@@ -127,12 +100,7 @@
             // var_dump($sql);
             return $this->getone($sql);
         }
-            // 5）查询数据
-        function find($id,$select='*')
-        {
-            $sql = "SELECT {$select} FROM {$this->tableName} WHERE id={$id}";
-            return $this->getRow($sql);
-        }
+            
 
 
     }

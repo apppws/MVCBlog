@@ -27,7 +27,8 @@
          {     
             // ******************* 搜索
             //  全部数据
-             $where = 1;
+            // 在 用户只能看自己的日志  
+             $where = 'user_id='.$_SESSION['id'];
             // 判断关键字 是否存在 是否为空
             if(isset($_GET['keyword']) && $_GET['keyword']){
                 // 拼接查询字段的sql语句
@@ -154,13 +155,20 @@
         // 处理修改列表
         function update(){
             // 先获取id
-            $id = $_GET['id'];
-            $edit = new Blog;
-            $edit->update([
-                'title'=>$_POST['title'],
-                'content'=>$_POST['content'],
-                'is_show'=>$_POST['is_show'],
-            ],'id='.$id);
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $is_show = $_POST['is_show'];
+            $id = $_POST['id'];
+            // 调用模型
+            $blog = new Blog;
+            $blog->update($title,$content,$is_show,$id);
+
+            // 判断如果日志时公开的 就生成静态页面  
+            if($is_show==1){
+                $blog->makeHtml($id);
+            }else{
+                $blog->deletHtml($id);
+            }
 
             // 跳转到列表页
             $this->redirect('/blog/list', 5, '页面跳转中...');
@@ -200,9 +208,10 @@
         // 删除页面
         function deletes(){
             // 接收id
-            $id = $_GET['id'];
+            $id = $_POST['id'];
+            // 调用模型  
             $del =  new Blog;
-            $del->delete('id='.$id);
+            $del->delete($id);
             $this->redirect('/blog/list', 2, '页面跳转中...');
 
         }
@@ -234,7 +243,9 @@
         public function display(){
             // 先获取id
             $id = (int)$_GET['id'];
+            // var_dump($id);
             $blog = new Blog;
+            // var_dump($blog);
             $blog->getDisplay($id);
         }
         // 调用模型的 

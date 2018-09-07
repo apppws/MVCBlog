@@ -50,6 +50,7 @@
             // 第三步 发送邮件
             // 从邮箱地址中取出名字
             $name = explode('@',$email);
+            echo $email;
             // 构造收件人的地址  apppws@126.com   收件人就是 apppws
             $from = [$email,$name[0]];
             // var_dump($from);

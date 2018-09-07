@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/simditor-2.3.6/styles/simditor.css" />
     <title>修改日志</title>
 </head>
 <body>
         <?php view('common.nav')?>
     <h1>修改日志</h1>
-    <form action="/blog/update?id=<?=$blog['id']?>" method="post">
-        <input type="hidden" name="_token" value="<?=csrf()?>">
+    <form action="/blog/update" method="post">
+        <?php csrf_input()?>
+        <input type="hidden" name="id" value="<?=$blog['id']?>" >
         <div>
             标题
             <input type="text" name="title" value="<?=$blog['title']?>">
         </div>
         <div>
             内容
-            <textarea name="content" cols="30" rows="10"><?=$blog['content']?></textarea>
+            <textarea name="content" id="content" cols="30" rows="10"><?=$blog['content']?></textarea>
         </div>
         <div>
             是否显示
@@ -31,3 +33,40 @@
     <?php view('common.footer')?>
 </body>
 </html>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/module.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/uploader.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/simditor.js"></script>
+<script>
+    var editor = new Simditor({
+        textarea: $('#content'),
+        upload:{
+        url:'',
+        params:'null',
+        fileKey:'file',
+        connectionCount:3,
+        leaveConfirm: '文件上传中，真要离开吗？'
+        },
+        toolbar:[
+            'title',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'fontScale',
+            'color',
+            'ol'    ,       
+            'ul'         ,
+            'blockquote',
+            'code'       ,
+            'table',
+            'link',
+            'image',
+            'hr'          , 
+            'indent',
+            'outdent',
+            'alignment'
+            ]
+    });
+</script>

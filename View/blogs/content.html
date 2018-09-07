@@ -9,7 +9,7 @@
 <body>
     <h1><?=$blogs['title']?></h1>
     <span>发表时间<?=$blogs['created_at']?></span>
-    浏览量：<span id="display"></span>
+    <p>浏览量：<span id="display"></span></p>
     <p><?=$blogs['content']?></p>
 </body>
 </html>
@@ -23,7 +23,7 @@
     // 第一步 获取id
     var id = "<?=$blogs['id']?>";
     // 第二步定义接口地址
-    var url = "/blog/display?id="+id;
+    var url = "http://localhost:9999/blog/display?id="+id;
     // 第三步 用 ajax 请求服务器
     $.ajax({
          type:"GET",
