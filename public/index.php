@@ -27,7 +27,7 @@ session_start();
          // 第二步实现自动加载
             function autoload($class)
             {
-                     var_dump($class);
+                    //  var_dump($class);
                     // 引入文件 并拼接  形成搜索
                     $path = str_replace('\\', '/', $class);
                     require(ROOT . $path . '.php');

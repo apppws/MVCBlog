@@ -24,6 +24,7 @@
 <a href="/blog/create">发表日志</a>
 <?php if(isset($_SESSION['id'])): ?>
     <?=$_SESSION['email']?>
+    <a href="/user/charge">充值</a>
     <a href="/user/logout">退出</a>
 <?php else: ?>
 <a href="/user/register">注册</a>

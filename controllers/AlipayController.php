@@ -9,8 +9,8 @@
             // appid 号
             'app_id'=>'2016091600527335',
             //通知地址
-            'notify_url'=>'https://openapi.alipaydev.com/gateway.do',
-                // 'notify_url'=>'http://requestbin.fullcontact.com/105z4dq1',
+            // 'notify_url'=>'https://openapi.alipaydev.com/gateway.do',
+                'notify_url'=>'http://requestbin.fullcontact.com/rewlmcre',
             // 调回地址
             'return_url'=>'http://localhost:9999/alipay/return',
             // 支付宝公钥
@@ -22,14 +22,26 @@
         ];
         // 发起支付
         public function pay(){
-            $order=[
-                'out_trade_no'=>time(),  //本地订单id
-                'total_amount'=>'0.01',  //支付金额
-                'subject'=>'test subject', //支付标题
-            ];
-            // 调用这个方法 发起支付
-            $alipay = Pay::alipay($this->config)->web($order);
-            $alipay->send();
+            // 第一接收订单编码
+            $sn = $_POST['sn'];
+            // 取出订单的信息
+            $order = new \models\Order;
+            // 根据编码取出订单信息  
+            $data = $order->findBySn($sn);
+            // 判断如果订单还未支付就跳到支付宝  
+            if($data['status']==0){
+                $ord=[
+                    'out_trade_no'=>$sn,  //本地订单id
+                    'total_amount'=>$data['money'],  //支付金额
+                    'subject'=>'pws测试用户充值：'.$data['money'].'元', //支付标题
+                ];
+                // 调用这个方法 发起支付
+                $alipay = Pay::alipay($this->config)->web($ord);
+                $alipay->send();
+            }else{
+                die('订单状态不能进行支付！');
+            }  
+            
         }
         // 支付完成跳回
         public function return(){
@@ -45,12 +57,20 @@
         public function notify(){
             $alipay = Pay::alipay($this->config);
             try{
+                // 判断消息是否是支付宝发过来的 以及判断这个消息有么有被中途串改 如果改了就抛出异常
                 $data = $alipay->verify(); 
-                echo '订单ID'.$data->out_trade_no."\r\n";
-                echo '支付总金额'.$data->total_amount."\r\n";
-                echo '支付状态'.$data->trade_status."\r\n";
-                echo '商户ID'.$data->seller_id."\r\n";
-                echo 'app_id'.$data->app_id."\r\n";
+                // 判断支付状态
+                if($data->trade_status=='TRADE_SUCCESS' || $data->trade_status =='TRADE_FINISHED'){
+                    //更新订单状态
+                    $order = new \models\Order;
+                    // 获取订单信息
+                    $orderInfo = $order->findBySn($data->out_trade_no);
+                    // 如果订单信息状态为未支付状态
+                    if($orderInfo['status']==0){
+                        // 设置订单为已支付状态
+                        $order->setPaid($data->out_trade_no);
+                    }
+                }
             }catch(\Exception $e){
                 echo "失败";
                 var_dump($e->getMessage());

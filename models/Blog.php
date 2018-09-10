@@ -78,7 +78,7 @@
             if($redis->hexists('blog_display',$key)){
                 // 累加 并且 返回添加完之后的值
                 $newNum = $redis->hincrby('blog_display', $key, 1);
-                var_dump($newNum);
+                echo $newNum;
                 return $newNum;
             }else{
                 // 从数据中取出浏览量
@@ -126,7 +126,7 @@
             ]);
             // 从缓存区取出数据 并清除缓存
             $str = ob_end_clean();  //数据
-            var_dump($str);
+            // var_dump($str);
             // 取出数据生成静态页面并拼接路径 保存
             file_put_contents(ROOT.'public/contents/'.$id.'.html',$str);
            

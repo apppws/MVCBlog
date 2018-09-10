@@ -3,8 +3,31 @@
     // 控制器  
     // 第一步引入模型
     use models\User;
+    use models\Order;
     class UserController
     {
+        // 显示充值页面
+        public function charge(){
+            view('users.charge');
+        }
+        // 执行充值页面
+        public function docharge(){
+            // 接收数据 生成订单
+            $money = $_POST['money'];
+            $model = new Order;
+            $model->create($money);
+            message('充值订单已经生成，请立即支付！',2,'/user/orders');    
+
+        }
+        // 订单的列表
+        public function orders(){
+            // new 模型
+            $model = new Order;
+            $data = $model-> search();
+            // 加载视图
+            view('users.order',$data);
+
+        }
         // 退出 
         public  function  logout(){
             $_SESSION =[];
