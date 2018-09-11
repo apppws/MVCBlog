@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/simditor-2.3.6/scripts/qrcode.js"></script>
+    <style>
+        #abc{
+            width: 500px;
+            height: 500px;
+            margin:0 auto; 
+        }
+    </style>
+</head>
+<body>
+    <div id="abc"></div>
+</body>
+</html>
+<script>
+    var qrcode = new QRCode('abc', {
+        text: '<?=$qrcode?>',
+        width: 500,
+        height: 500,
+        colorDark : 'purple',
+        colorLight : '#ccc',
+     });
+</script>
