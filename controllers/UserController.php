@@ -6,6 +6,11 @@
     use models\Order;
     class UserController
     {
+        // 服务器添加接口
+        public function money(){
+            $user = new User;
+            echo $user->getMoney();
+        }
         // 显示充值页面
         public function charge(){
             view('users.charge');

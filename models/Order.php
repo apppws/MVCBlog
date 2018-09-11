@@ -55,6 +55,7 @@
                         $class='';
                     }
                     $pageBtn.= "<a $class href='?page={$i}'>{$i}</a>";
+                    // var_dump($pageBtn);
                 }
             
             // 预处理 sql
@@ -63,6 +64,7 @@
             $stmt->execute();
             // 取数据
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($data);
             // 加载列表页视图
             return [
                 'pageBtn'=>$pageBtn,
@@ -85,7 +87,9 @@
             // 预处理
             $stmt = self::$pdo->prepare("UPDATE orders SET status=1,pay_time=now() WHERE sn = ?");
             // 执行
-            $stmt->execute([$sn]);
+            $stmt->execute([
+                $sn
+                ]);
             
         }
 

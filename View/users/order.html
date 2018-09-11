@@ -23,6 +23,7 @@
         <tr>
             <th>ID</th>
             <th>订单编号</th>
+            <th>总金额</th>
             <th>下单时间</th>
             <th>订单状态</th>
             <th>支付时间</th>
@@ -32,6 +33,7 @@
         <tr>
             <td><?=$v['id']?></td>
             <td><?=$v['sn']?></td>
+            <td><?=$v['money']?></td>
             <td><?=$v['created_at']?></td>
             <td><?=$v['status']==0?'未支付':($v['status']==1?'已支付':'已退款');?></td>
             <td><?=$v['pay_time']?></td>
@@ -47,9 +49,9 @@
             </td>
         </tr>
         <?php endforeach; ?>
-        
+       
     </table>
-    <?=$pagebtn?>
+    <?php $pagebtn?>
     <?php view('common.footer')?>
 </body>
 

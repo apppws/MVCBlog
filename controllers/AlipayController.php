@@ -3,14 +3,15 @@
     // 先引入这个包
     use Yansongda\Pay\Pay;
     class AlipayController{
-
+        // jwelpt9815@sandbox.com
         // 设定配置文件
         public $config = [
             // appid 号
             'app_id'=>'2016091600527335',
             //通知地址
             // 'notify_url'=>'https://openapi.alipaydev.com/gateway.do',
-                'notify_url'=>'http://requestbin.fullcontact.com/rewlmcre',
+                // 'notify_url'=>'http://requestbin.fullcontact.com/rewlmcre',
+            'notify_url'=>'http://30ed8e65.ngrok.io/alipay/notify',
             // 调回地址
             'return_url'=>'http://localhost:9999/alipay/return',
             // 支付宝公钥
@@ -65,10 +66,14 @@
                     $order = new \models\Order;
                     // 获取订单信息
                     $orderInfo = $order->findBySn($data->out_trade_no);
+                    var_dump($orderInfo);   
                     // 如果订单信息状态为未支付状态
                     if($orderInfo['status']==0){
                         // 设置订单为已支付状态
                         $order->setPaid($data->out_trade_no);
+                        // 更新用户余额
+                        $user = new  \models\User;
+                        $user->addMoney($orderInfo['money'],$orderInfo['user_id']);
                     }
                 }
             }catch(\Exception $e){

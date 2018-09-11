@@ -18,6 +18,8 @@
     },1000);
 </script>
 <?php endif; ?>
+<script src="/simditor-2.3.6/scripts/jquery.min.js"></script>
+
 <h1>系统</h1>
 <a href="/">首页</a>
 <a href="/blog/list">列表页</a>
@@ -25,6 +27,18 @@
 <?php if(isset($_SESSION['id'])): ?>
     <?=$_SESSION['email']?>
     <a href="/user/charge">充值</a>
+    ( <span id="span_money" style="color:red;font-weight: bold;"><?=$_SESSION['money']?></span> 
+        <input id="update_money" type="button" value="更新余额">
+
+        <script>
+            // 先获取原始的金额  
+            $("#span_money").click(function(){
+                    // 在获取更新余额 跳转到 user控制器中Money方法
+                $("$update_money").load("user/money");
+            });
+        </script>
+    )
+    <a href="/user/orders">充值列表</a>
     <a href="/user/logout">退出</a>
 <?php else: ?>
 <a href="/user/register">注册</a>
