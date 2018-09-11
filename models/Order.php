@@ -87,7 +87,7 @@
             // 预处理
             $stmt = self::$pdo->prepare("UPDATE orders SET status=1,pay_time=now() WHERE sn = ?");
             // 执行
-            $stmt->execute([
+           return  $stmt->execute([
                 $sn
                 ]);
             

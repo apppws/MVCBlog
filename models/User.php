@@ -27,7 +27,7 @@
             // 预处理 update
             $stmt = self::$pdo->prepare(" UPDATE users SET money=? WHERE id = ?");
             //执行
-            $stmt->execute([
+           return  $stmt->execute([
                 $money,
                 $userId
             ]);

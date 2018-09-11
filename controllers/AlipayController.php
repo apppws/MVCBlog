@@ -36,7 +36,7 @@
                     'total_amount'=>$data['money'],  //支付金额
                     'subject'=>'pws测试用户充值：'.$data['money'].'元', //支付标题
                 ];
-                // 调用这个方法 发起支付
+                // 调用这个方法 发起支付  
                 $alipay = Pay::alipay($this->config)->web($ord);
                 $alipay->send();
             }else{
@@ -66,14 +66,24 @@
                     $order = new \models\Order;
                     // 获取订单信息
                     $orderInfo = $order->findBySn($data->out_trade_no);
-                    var_dump($orderInfo);   
+                    // var_dump($orderInfo);   
                     // 如果订单信息状态为未支付状态
                     if($orderInfo['status']==0){
+                        // 开始事务
+                        $order->startTrans();
                         // 设置订单为已支付状态
-                        $order->setPaid($data->out_trade_no);
+                        $red1 = $order->setPaid($data->out_trade_no);
                         // 更新用户余额
                         $user = new  \models\User;
-                        $user->addMoney($orderInfo['money'],$orderInfo['user_id']);
+                        $red2 = $user->addMoney($orderInfo['money'],$orderInfo['user_id']);
+                        // 判断事务
+                        if($red1 && $red2){
+                            // 提交事务
+                            $order->commit();
+                        }else{
+                            // 就回滚事务
+                            $order->rollback();
+                        }
                     }
                 }
             }catch(\Exception $e){
