@@ -42,9 +42,13 @@
                 <form action="/alipay/pay" method="post">
                     <?=csrf_input()?>
                     <input type="hidden" name="sn" value="<?=$v['sn']?>">
-                    <input type="submit" value="点击支付">
+                    <input type="submit" value="支付宝支付">
                 </form>
-
+                <form action="/wxpay/pay" method="post">
+                    <?=csrf_input()?>
+                    <input type="hidden" name="sn" value="<?=$v['sn']?>">
+                    <input type="submit" value="微信支付">
+                </form>
                 <?php endif;?>
             </td>
         </tr>

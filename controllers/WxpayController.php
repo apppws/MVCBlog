@@ -1,11 +1,7 @@
 <?php
 namespace controllers;
 use Yansongda\Pay\Pay;
-use Endroid\QrCode\ErrorCorrectionLevel;
-use Endroid\QrCode\LabelAlignment;
-use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Response\QrCodeResponse;
-use Mockery\CountValidator\Exception;
+
     class WxpayController{
         // 配置
         protected $config = [
@@ -13,67 +9,90 @@ use Mockery\CountValidator\Exception;
             'app_id' => 'wx426b3015555a46be',
             'mch_id' => '1900009851',
             'key' => '8934e7d15453e97507ef794cf7b0519d',
-            'notify_url'=>'http::requestbin.fullcontact.com/r6s2a1r6',  //请求的微信地址
+            // 'notify_url'=>'http::requestbin.fullcontact.com/r6s2a1r6',  //请求的微信地址
+            'notify_url'=>'http://241eb913.ngrok.io/wxpay/notify',
         ];
         // 发起支付
         public function pay(){
-            // 订单信息
-            $order = [
-                'out_trade_no'=>time(),  //获取时间戳
-                'total_fee'=>'1',  //分 
-                'body'=>'pwswx-测试',
-            ];
-            // 发起支付
-            $pay = Pay::wechat($this->config)->scan($order);
-            // echo $pay->return_code,'<hr>';
-            // echo $pay->return_msg,'<hr>';
-            // echo $pay->appid,'<hr>';
-            // echo $pay->result_code,'<hr>';
-            // echo $pay->code_url,"<hr>";   //这个是最重要的
-            view('blogs.qrcode',['qrcode'=>$pay->code_url]);
+            // 第一接收订单编号
+            $sn = $_POST['sn'];
+            // var_dump($sn);
+            // 取出订单的信息
+            $order = new \models\Order;
+            // 根据编号取出订单信息
+            $data = $order->findBySn($sn);
+            // var_dump($data);
+            // 判断如果订单信息还未支付就跳转
+            if($data['status']==0){
+                 // 订单信息
+                $order = [
+                    'out_trade_no'=>$data['sn'],  //获取时间戳
+                    'total_fee'=>$data['money']*100,  //分 
+                    'body'=>'pwswx-测试:'.$data['money'].'元',
+                ];
+                // 发起支付
+                $pay = Pay::wechat($this->config)->scan($order);
+                // 判断 是否发送成功
+                if($pay->return_code=='SUCCESS' && $pay->result_code=='SUCCESS'){
+                    // 发送成功就加载视图   //生成二维码图片
+                    view('users.wxpay',[
+                        'code'=>$pay->code_url,
+                        'sn'=>$sn
+                        ]);
+                }
+            }else{
+                die('订单状态不能完成支付');
+            }
+           
+           
         }
         // 接受支付完成的通知
         public function notify(){
+            // 模拟一下数据
+            // $log = new \libs\Log('wxpay');
+            // $log->log('接收到微信的消息');
             $pay = Pay::wechat($this->config);
             try{
                 $data = $pay->verify();
-                // 判断
+                // 记录一下日志
+                // $log->log('验证成功，接收的数据是：' . file_get_contents('php://input'));
+                // 判断支付状态
                 if($data->result_code == 'SUCCESS' && $data->return_code == 'SUCCESS'){
-                    echo '共支付了：'.$data->total_fee.'分';
-                    echo '订单的id'.$data->out_trade_no;
+                    // 记录
+                    // $log->log('支付成功');
+                    //更新订单状态
+                    $order = new \models\Order;
+                    // 获取订单信息
+                    $orderInfo = $order->findBySn($data->out_trade_no);
+                    var_dump($orderInfo);   
+                    // 如果订单信息状态为未支付状态
+                    if($orderInfo['status']==0){
+                        var_dump($orderInfo['status']);
+                        // 开始事务
+                        $order->startTrans();
+                        // 设置订单为已支付状态
+                        $red1 = $order->setPaid($data->out_trade_no);
+                        // 更新用户余额
+                        $user = new  \models\User;
+                        $red2 = $user->addMoney($orderInfo['money'],$orderInfo['user_id']);
+                        // 判断事务
+                        if($red1 && $red2){
+                            // 提交事务
+                            $order->commit();
+                        }else{
+                            // 就回滚事务
+                            $order->rollback();
+                        }
+                    }
                 }
 
             }catch(Exception $e){
-                var_dump( $e->gerMessage() );
+                // 记录日志
+                // $log->log('验证失败！'.$e->getMessage());
+                var_dump( $e->getMessage() );
             }
             // 返回响应
             $pay->success()->send();
-        }
-
-        // 生成二维码
-        public function qrcode(){
-            // echo 'weixin://wxpay/bizpayurl?pr=POVBacd';
-            // $qrCode = new QrCode('weixin://wxpay/bizpayurl?pr=POVBacd');
-            // 大小
-            // $qrCode->setSize(300);
-            // $qrCode->setWriterByName('png');  //后缀
-            // // $qrCode->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH);
-            // // $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
-            // // $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
-            // // $qrCode->setLabel('Scan the code', 16, __DIR__ . '/../assets/fonts/noto_sans.otf', LabelAlignment::CENTER);
-            // // $qrCode->setLogoPath(__DIR__ . '/../assets/images/symfony.png');
-            // // $qrCode->setLogoSize(150, 200);
-            // // $qrCode->setRoundBlockSize(true);
-            // // $qrCode->setValidateResult(false);
-            // // $qrCode->setWriterOptions(['exclude_xml_declaration' => true]);
-
-            // header('Content-Type:'.$qrCode->getContentType());
-            // echo $code->writeString();
-            // // 保存文件路径
-            // $qrCode->writeFile(__DIR__ . '/qrcode.png');
-
-            // // 创建响应对象
-            // $response = new QrCodeResponse($qrCode);
         }
     }
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>上传头像文件</title>
+</head>
+<body>
+    <h1>上传文件</h1>
+    <form action="/user/upheadimg" method="post" enctype="multipart/form-data">
+        <?=csrf_input()?>
+        上传图片：<input id="img" type="file" name="image"><br>
+        <input type="submit" value="上传头像">
+    </form>
+</body>
+</html>

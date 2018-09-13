@@ -6,6 +6,112 @@
     use models\Order;
     class UserController
     {
+        // 显示批量上传
+        public function filebig(){
+            view('users.filebig');
+        }
+        // 处理大图片的 方法  ajax 到的服务器
+        public function uploadall(){
+            // 接收数据
+            $count = $_POST['count'];
+            $i = $_POST['i'];
+            $size = $_POST['size'];
+            $img = $_FILES['img'];
+            $name = 'big_img_'.$_POST['img_name'];
+            // 把每一个分片保存到服务器中
+            move_uploaded_file($img['tmp_name'],ROOT.'tmp/'.$i);
+            // 保存到 redis中
+            $redis = \libs\Redis::getInstance();
+            // 每上传一张图片  就把redis中 id+1
+            $co = $redis->incr($name);
+            //如果上传+的数量 等于总的数量就加载完成
+            if($co == $count){
+                // 合并所有的图片
+                // 创建以追加的方式打开最终的文件  文件
+                $fp = fopen(ROOT.'public/uploads/big/'.$name.'.png','a');
+                // 在循环所有的分片
+                for($i=0;$i<$count;$i++){
+                    // 读取第i个元素文件并写入到大文件中
+                    fwrite($fp,file_get_contents(ROOT.'tmp/'.$i));
+                    // 在删除第i的临时文件
+                    unlink(ROOT.'tmp/'.$i); 
+                }
+                // 关闭文件
+                fclose($fp);
+                // 在从redis中删除对应的编号这个变量
+                $redis->del($name);
+            }
+
+        }
+        // 上传相册
+        public function arrayfile(){
+            // 加载视图
+            view('users.arrayfile');
+        }
+        // 处理相册表单
+        public function doarrayfile(){
+            // echo '<pre>';
+            // var_dump($_FILES['image']);
+            // 第一步先创建根目录
+            $root = ROOT.'public/uploads/';
+            //用日期创建
+            $date = date('Y-m-d');
+            // 判断这个目录是否存在
+            if(!is_dir($root.'/'.$date)){
+                // 不存在就创建
+                mkdir($root.'/'.$date);
+            }
+            // 循环上传数5张数组
+            foreach($_FILES['image']['name'] as $k=>$v){
+                // 生成唯一的name
+                $name = md5(time().rand(1,99999));
+                // 获取文件的后缀
+                $ext = strrchr($v,'.');
+                // 拼接完整的 
+                $name = $name.$ext;
+                // var_dump($_FILES['image']['tmp_name'][$k]);
+                // 移动到指定的目录
+                move_uploaded_file($_FILES['image']['tmp_name'][$k],$root.$date.'/'.$name);
+                echo $root.$date.'/'.$name;
+            }
+        }
+        // 显示上传头像 
+        public function headimg(){
+
+            // 加载视图
+            view('users.headimg');
+        }
+        // 接收上传的头像
+        public function upheadimg(){
+            // 第一步先创建根目录
+            $root = ROOT.'public/uploads';
+            // 用日期创建二级目录
+            $date = date('Y-m-d');
+            // 判断是否有这个目录  如果没有就创建 
+            if(!is_dir($root.'/'.$date)){
+                // 创建目录
+                mkdir($root.'/'.$date,0777);
+            }
+            // 获取文件扩展名  
+            $ext = strchr($_FILES['image']['name'],'.');  
+            // var_dump($ext);
+            // 生成唯一的文件名
+            $name = md5(time().rand(1,99999));
+            // var_dump($name);
+            // 保存完整文件名  //../public/uploads/2018-09-13/4207400d328db0ed5cf093d963394456.jpg"
+            $fullName = $root.'/'.$date.'/'.$name.$ext;
+            // var_dump($fullName);
+            // 保存到目录中
+            move_uploaded_file($_FILES['image']['tmp_name'],$fullName);
+
+        }
+        // 查询订单的接口
+        public function orderStatus(){
+            $sn = $_GET['sn'];
+            $model = new Order;
+            $info = $model->findBySn($sn);
+            echo $info['status'];
+        }
         // 服务器添加接口
         public function money(){
             $user = new User;

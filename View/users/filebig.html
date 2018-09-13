@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>上传大图片</title>
+</head>
+<body>
+        <?php view('common.nav')?>
+    <h1>批量上传</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        <?=csrf_input()?>
+        <div>
+        上传大图片：
+             <input id="img" type="file" name="image">
+        </div>
+        <div>
+             <input type="submit" value="上传头像">
+        </div>
+    </form>
+    <?php view('common.footer')?>
+</body>
+</html>
+<!-- 上传大图片   -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    // 先获取
+    var img = document.getElementById('img');
+    // console.log(img);  
+    img.onchange = function(){
+        // console.log('触发');
+        // 获取选中的第一张图片
+        var img1 = this.files[0];
+        // console.log(img1);
+        // 获取这张图片的尺寸
+        var fileSize = img1.size;
+        // console.log(fileSize);
+        // 设定每块的尺寸
+        var perSize = 4096;  //4k
+        // 计算总的块数  向上取整
+        var count = Math.ceil(fileSize/perSize) ;
+        // console.log(count);
+        for(var i=0;i<count;i++){
+            // 切割   倍数的关系
+            var img0 = img1.slice(i*perSize,i*perSize+perSize);  
+            // FromDate 对象 模拟一个表单
+            var fd = new FormData();
+            // 把图片上传数据
+            fd.append('img',img0);
+            // 总的块
+            fd.append('count',count);
+            // 当前的图片属于第几块
+            fd.append('i',i);
+            fd.append('size',perSize);
+            fd.append('img_name',name);
+            // 上传到服务器
+            $.ajax({
+                type:"POST",
+                url:"/user/uploadall",
+                data:fd,
+                contentType:false,  //你如果上传的是图片   就是告诉浏览器不用处理这个数据
+                processData:false,
+                success:function(data){
+                    
+
+                }
+            })
+        }
+    }
+</script>
