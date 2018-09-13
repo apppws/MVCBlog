@@ -1,11 +1,63 @@
 <?php 
     namespace controllers;
+    // 引入 excel 的包
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;   
     // 控制器  
     // 第一步引入模型
     use models\User;
     use models\Order;
     class UserController
     {
+        // 导出excel 文件
+        public function textExl(){
+            // 第一步从数据库中取出数据
+            $blog = new \models\Blog; 
+            // 取出最新的十条文章
+            $bloglist = $blog->get("SELECT * FROM lists  LIMIT 10");
+            // var_dump($bloglist);
+            // 获取当前标签页
+            $spreadsheet = new Spreadsheet();
+            // 获取当前的工作
+            $sheet = $spreadsheet->getActiveSheet();   
+            // 设置第一行内容
+            $sheet->setCellValue('A1', '标题');
+            $sheet->setCellValue('B1', '内容');
+            $sheet->setCellValue('C1', '发表时间');
+            $sheet->setCellValue('E1', '浏览量');
+            $sheet->setCellValue('F1', '是否显示');
+            // 设置第二行的内容
+            $i = 2;
+            foreach($bloglist as $v){
+                $sheet->setCellValue('A'.$i, $v['title']);
+                $sheet->setCellValue('B'.$i, $v['content']);
+                $sheet->setCellValue('C'.$i, $v['created_at']);
+                $sheet->setCellValue('E'.$i, $v['display']);
+                $sheet->setCellValue('F'.$i, $v['is_show']);
+                $i++;
+            }
+            $date = date('Y-m-d');
+            $writer = new Xlsx($spreadsheet);   
+            $writer->save(ROOT . 'excel/'.$date.'.xlsx');   //保存到本地文件路径
+
+            // 调用 header 函数 告诉浏览器下载
+            // 第一下载文件路径
+            
+            $file = ROOT.'excel/'.$date.'.xlsx';
+            // 下载的时的文件名
+            $fileName = "最新的10条日志列表-".$date.'.xlsx';
+            // var_dump($file);
+             //告诉浏览器这是一个文件流格式的文件    
+            Header ( "Content-type: application/octet-stream" ); 
+            //请求范围的度量单位  
+            Header ( "Accept-Ranges: bytes" );  
+            //Content-Length是指定包含于请求或响应中数据的字节长度    
+            Header ( "Accept-Length: " . filesize (  $file ) );  
+            //用来告诉浏览器，文件是可以当做附件被下载，下载后的文件名称为$file_name该变量的值。
+            Header ( "Content-Disposition: attachment; filename=" . $fileName );   
+            readfile($file);
+            
+        }
         // 显示批量上传
         public function filebig(){
             view('users.filebig');
@@ -17,7 +69,7 @@
             $i = $_POST['i'];
             $size = $_POST['size'];
             $img = $_FILES['img'];
-            $name = 'big_img_'.$_POST['img_name'];
+            $name = 'big_img_'.$_POST['img_name'];  //拼接文件名
             // 把每一个分片保存到服务器中
             move_uploaded_file($img['tmp_name'],ROOT.'tmp/'.$i);
             // 保存到 redis中
