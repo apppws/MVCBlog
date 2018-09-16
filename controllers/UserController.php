@@ -136,25 +136,45 @@
         // 接收上传的头像
         public function upheadimg(){
             // 第一步先创建根目录
-            $root = ROOT.'public/uploads';
-            // 用日期创建二级目录
-            $date = date('Y-m-d');
-            // 判断是否有这个目录  如果没有就创建 
-            if(!is_dir($root.'/'.$date)){
-                // 创建目录
-                mkdir($root.'/'.$date,0777);
-            }
-            // 获取文件扩展名  
-            $ext = strchr($_FILES['image']['name'],'.');  
-            // var_dump($ext);
-            // 生成唯一的文件名
-            $name = md5(time().rand(1,99999));
-            // var_dump($name);
-            // 保存完整文件名  //../public/uploads/2018-09-13/4207400d328db0ed5cf093d963394456.jpg"
-            $fullName = $root.'/'.$date.'/'.$name.$ext;
-            // var_dump($fullName);
-            // 保存到目录中
-            move_uploaded_file($_FILES['image']['tmp_name'],$fullName);
+            // $root = ROOT.'public/uploads';
+            // // 用日期创建二级目录
+            // $date = date('Y-m-d');
+            // // 判断是否有这个目录  如果没有就创建 
+            // if(!is_dir($root.'/'.$date)){
+            //     // 创建目录
+            //     mkdir($root.'/'.$date,0777);
+            // }
+            // // 获取文件扩展名  
+            // $ext = strchr($_FILES['image']['name'],'.');  
+            // // var_dump($ext);
+            // // 生成唯一的文件名
+            // $name = md5(time().rand(1,99999));
+            // // var_dump($name);
+            // // 保存完整文件名  //../public/uploads/2018-09-13/4207400d328db0ed5cf093d963394456.jpg"
+            // $fullName = $root.'/'.$date.'/'.$name.$ext;
+            // // var_dump($fullName);
+            // // 保存到目录中
+            // move_uploaded_file($_FILES['image']['tmp_name'],$fullName);
+
+
+             // 上传新头像
+                $upload = \libs\Uploadfile::file();
+                $path = $upload->upload('image', 'headimg');
+                  // 保存到 user 表中
+                $model = new \models\User;
+                $model->setface('/uploads/'.$path);
+
+                // 注意：网站中图片有两个路径
+                // 浏览器（从网站根目录开始找）： /uploads/headimg/20180914/041a05ec7f7179dab8e00b13de997f1a.jpg
+                // 硬盘上的路径 :    D:/www/blog/7f7179dab8e00b13de997f1a.jpg
+                // 删除原头像
+                @unlink( ROOT . 'public'.$_SESSION['headimg'] );
+
+                // 设置新头像
+                $_SESSION['headimg'] = '/uploads/'.$path;
+
+
+                message('设置成功', 2, '/blog/list');
 
         }
         // 查询订单的接口

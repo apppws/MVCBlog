@@ -5,7 +5,15 @@
     class User extends BaseModel
     {
         public $tableName = 'users';
-        
+        // 设置头像
+        public function setface($path){
+            $stmt = self::$pdo->prepare('UPDATE users SET face =? WHERE id=?');
+            $stmt->execute([
+                $path,
+                $_SESSION['id']
+            ]);
+        }
+
         // 获取金额
         public function getMoney(){
             // 先获取用户id
@@ -60,7 +68,7 @@
                 $_SESSION['id'] = $data['id'];
                 $_SESSION['email'] = $data['email'];
                 $_SESSION['money'] = $data['money'];
-
+                $_SESSION['headimg'] = $data['headimg'];
                 return true;
             }else{
                 return false;

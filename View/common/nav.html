@@ -26,6 +26,8 @@
 <a href="/user/textExl">导出excel文件</a>
 <a href="/blog/create">发表日志</a>
 <?php if(isset($_SESSION['id'])): ?>
+<img style="width:50px;height:50px;border-radius: 50%;vertical-align: middle;" 
+src="<?=$_SESSION['headimg']==''?'/images/headimg.jpg':$_SESSION['headimg']?>" />
     <?=$_SESSION['email']?>
     <a href="/user/charge">充值</a>
     ( <span id="span_money" style="color:red;font-weight: bold;"><?=$_SESSION['money']?></span> 
