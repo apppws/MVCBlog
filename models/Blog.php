@@ -5,6 +5,53 @@
     class Blog extends BaseModel
     {
         public $tableName = 'lists';
+        // 取出点赞过这个日志的用户信息
+        public function zanList($id)
+        {
+            $sql = 'SELECT b.id,b.email,b.face
+                    FROM praise a
+                    LEFT JOIN users b ON a.user_id = b.id
+                    WHERE a.list_id=?';                   
+            // var_dump($sql);
+            $stmt = self::$pdo->prepare($sql);
+
+            $stmt->execute([
+                $id
+            ]);
+
+            return $stmt->fetchAll( PDO::FETCH_ASSOC );
+        }
+        // 点赞
+        function praise($id){
+            // 判断是否点过赞
+            $stmt = self::$pdo->prepare("SELECT COUNT(*) FROM praise WHERE user_id =? AND list_id=?");
+            $stmt->execute([
+                $_SESSION['id'],
+                $id
+            ]);
+            $count = $stmt->fetch(PDO::FETCH_COLUMN);
+            // 判断数量是否==1  不等于就返回false
+            if($count==1){
+                return false;
+            }
+            // 点赞
+            $stmt = self::$pdo->prepare("INSERT INTO praise(user_id,list_id) VALUES(?,?)");
+            // var_dump($stmt);
+            $res = $stmt->execute([
+                $_SESSION['id'],
+                $id
+            ]);
+            // 更新点赞次数
+            if($res){
+                $stmt = self::$pdo->prepare("UPDATE lists SET zan=zan+1  WHERE id = ?");
+                $stmt->execute([
+                    $id,
+                ]);
+            }
+            // 返回数量
+            return $res;
+
+        }
 
         // 修改数据
         function update($title,$content,$is_show,$id){

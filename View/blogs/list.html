@@ -51,7 +51,13 @@
         <?php foreach($blogs as $blog):?>
         <tr>
             <td><?=$blog['id']?></td>
-            <td><a href="/contents/<?=$blog['id']?>.html"><?=$blog['title']?></a></td>
+            <td style="word-break: break-all;">
+                    <?php if($blog['is_show']==1): ?>
+                        <a href="/contents/<?=$blog['id']?>.html"><?=$blog['title']?></a>
+                    <?php else: ?>
+                        <a href="/blog/content?id=<?=$blog['id']?>"><?=$blog['title']?></a>
+                    <?php endif; ?>
+                </td>
             <td><?=$blog['created_at']?></td>
             <td><?=$blog['updated_at']?></td>
             <td><?=$blog['display']?></td>

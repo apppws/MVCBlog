@@ -214,7 +214,8 @@
         // 退出 
         public  function  logout(){
             $_SESSION =[];
-            die('退出成功');
+             // 跳转
+             message('退出成功', 2, '/');
         }
         // 显示登陆页面
         public function login(){

@@ -5,33 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>啤叮挠计得倡闭讼垄卿桥獭售甲帛佰沸始乳娜倡并踢蟹封亩截掏扇斑欧肃轮模侈挠到丘扳动鼓偷懦软碉题涕巴虾柒邪太懈腿些碍赫禽蠢袄铃模怂酬叛能呕郸苇捻南瓶钝趴崇桂谭姑校颂柯嫌辑獭车</title>
+    <style>
+        .agree-list {
+        border: 1px solid skyblue;
+        padding: 0;
+        text-align: center;
+    }
+    .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid skyblue;
+        padding: 5px;
+        margin-left: 20px;
+    }
+    .agree-list h3 {
+        padding: 0;
+        margin-top: 0;
+        background-color: #EEE;
+        padding: 5px;
+    }
+    </style>
 </head>
 <body>
+    <h1>系统</h1>
+     <div id="menu"></div>
     <h1>啤叮挠计得倡闭讼垄卿桥獭售甲帛佰沸始乳娜倡并踢蟹封亩截掏扇斑欧肃轮模侈挠到丘扳动鼓偷懦软碉题涕巴虾柒邪太懈腿些碍赫禽蠢袄铃模怂酬叛能呕郸苇捻南瓶钝趴崇桂谭姑校颂柯嫌辑獭车</h1>
     <span>发表时间2014-05-01 14:58:51</span>
     <p>浏览量：<span id="display"></span></p>
     <p>慧哎掀详构醋盛呜拈息统系祷称讲帝入轮悼圭燃埔斯零范片涩烹合谭矛鸽峰俺瓢参仙梦戈磊感蛾奔槐擎靡贝促些灵滴我括磊瞧齐峡乾搏窘粗奢钨痊顺曹受深梆欧泵彪吹掣臀溅邢哄嫂返乌士烷谴插盆浓棉弧按枚饶频脱悸斯胎瘫壕苗靠超掠领脑馁亢奥令肪餐荚囱瀑阮翘场抠先隶拨囊敞存城看离烽滤坡但关颧俗甲煽蹲伞谁牵久痉释蓖郴饯拨己绷肠遍瘦书笺搐婪酮轰缔领陵构疟垂却册暖晶课相瓷膊摔姐陌受潭艘犁磕权卷涩股蹿颠递捆鞭碧从跨肠尖荡芹伤卫诡立荆狠怖恐肠俏失丁斤末牧染反苹两溺坍疾检杰浇搭丝降梯斜寡坟勿高醚街盎妨狸江挖担溃汲堪锣申笺锹袭础桥敦踢含纬簿签缅塑波妹衬及领玲驹剂尉棉腥辰朝萌壬扦举癌绿靖贝烈浪违稼冉皮持扭枯矮残距幌祈氏迁靡贿降俱横扦师通册金掠伟娥扫撇寒瓢坏纺牢陇磐嘿酿棱侵仟恋卯板扯凤宿怀良睦臀肺查家干楷身犬龟虚燎烩蓉次凡剑攘少成唱惜伺疟冗队谅谭沏芬淑浓廓故蓖榷幻盛宫通家色府炕谈窖谱藏发巫思邦糜拐该亮储缝扳筏灰休趁先污腑袒句次纲唐店写屎导儡够灸渴摆墨刷华伯牡切堆臂酞燃灭沙记兴凉檬犬</p>
-</body>
+    <img style="cursor: pointer; width:120px;" id="btn-zan" src="/images/agree.jpg" alt="">
+    <div class="agree-list">
+            <h3>点赞列表</h3>
+            <div id="zan-list"></div>
+    </div>
+    <hr>
+2018 9 5</body>
 </html>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous">
-</script>
+<script src="/simditor-2.3.6/scripts/jquery.min.js"></script>
 <script>
     // 更新数据 浏览量  http://localhost:8989/blog/display?id=23
     // 第一步 获取id
     var id = "16";
     // 第二步定义接口地址
-    var url = "/blog/display?id="+id;
+    var url ="/blog/display?id=" + id;
     // 第三步 用 ajax 请求服务器
     $.ajax({
          type:"GET",
          url:url,
+         dataType:"json",
         success:function(data)
          {
+            //  console.log($data);
              // 把返回的浏览量放到页面
-            $("#display").html(data);
+            $("#display").html(data.display);
+            // 拼按钮的字符串
+            // 无论登录否都有一个首页的按钮
+            var html = '<a href="/">首页</a>';
+            // 判断登录
+            if(data.email == '')
+            {
+                // js 中定义多行字符串时要使用 ` （反引号 1左边的键子）
+                html += `<a href="/user/register">注册</a>
+                        <a href="/user/login">登录</a>`;
+            }
+            else
+            {
+                html += '<img src="'+data.headimg+'" style="width:50px;height:50px;border-radius: 50%;vertical-align: middle;">' + data.email + 
+                         `<a href="/blog/list">列表页</a>
+                        <a href="/user/textExl">导出excel文件</a>
+                        <a href="/blog/create">发表日志</a> 
+                        <a href="/user/headimg">上传头像</a>
+                        <a href="/user/arrayfile">上传相册</a>
+                        <a href="/user/logout">退出</a>`;
+            }
+            // 获取id=menu的div 并把按钮放进去
+            $("#menu").html(html);
+
          }
-});
+    });
+    $("btn-zan").click(function(){
+        $.ajax({
+            type:"POST",
+            url:"/blog/zan?id="+id,
+            dataType:"json",
+            success:function(data)
+            {
+                if(data.status_code == 200)
+                {
+                    alert('成功~');
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            }
+        })
+
+    });
+    // 点赞用户
+    $.ajax({
+        type:"GET",
+        url:"/blog/zan_list?id="+id,
+        dataType:'json',
+        success:function(data){
+            if(data.status_code == 200){
+                var html = '';
+                for(var i =0;i<data.data.length;i++){
+                    var headimg = data.data[i].headimg ? data.data[i].headimg : '/images/headimg.jpg';
+                    html += '<img title="'+data.data[i].email+'" class="headimg" src="'+headimg+'" alt="">';
+                }
+                // 把字符串放到页面
+                $("#zan-list").html( html )
+            }
+        }
+    });
 </script>

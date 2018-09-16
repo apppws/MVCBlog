@@ -5,6 +5,48 @@
     use Illuminate\Support\Facades\Redirect;
     class BlogController
     {
+        // 点赞用户
+        public function zan_list(){
+            $id = $_GET['id'];
+
+            // 获取这个日志所有点赞的用户
+            $model = new \models\Blog;
+            $data = $model->zanList($id);
+
+            // 转成 JSON 返回 
+            echo json_encode([
+                'status_code' => 200,
+                'data' => $data,
+            ]);
+
+        }
+        // 点赞功能
+        public function zan(){
+            $id = $_GET['id'];
+            // 判断是否登录
+            if(!isset($_SESSION['id'])){
+                echo json_encode([
+                    'status_code'=>'403',
+                    'message'=>'还没登录哦'
+                ]);
+                exit;
+            }
+            // 点赞
+            $blog = new \models\Blog;
+            $res = $blog->praise($id);
+            if($res){
+                echo json_encode([
+                    'status_code'=>'200',
+                ]);
+                exit;
+            }else{
+                echo json_encode([
+                    'status_code'=>'403',
+                    'message'=>"你已经点过赞了哦"   
+                ]);
+                exit;
+            }
+        }
         // 发表日志方法
         public  function create(){
             // 加载发表日志视图
@@ -171,7 +213,7 @@
             }
 
             // 跳转到列表页
-            $this->redirect('/blog/list', 5, '页面跳转中...');
+            message('修改成功！', 2, '/blog/list');
 
            
         }
@@ -212,9 +254,30 @@
             // 调用模型  
             $del =  new Blog;
             $del->delete($id);
-            $this->redirect('/blog/list', 2, '页面跳转中...');
+             // 静态页删除掉
+                $blog->deleteHtml($id);
+
+                message('删除成功',2,'/blog/list');
 
         }
+        // 显示私有日志
+            public function content()
+            {
+                // 1. 接收ID，并取出日志信息
+                $id = $_GET['id'];
+                $model = new Blog;
+                $blog = $model->find($id);
+
+                // 2. 判断这个日志是不是我的日志
+                if($_SESSION['id'] != $blog['user_id'])
+                    die('无权访问！');
+
+                // 3. 加载视图
+                view('blogs.content', [
+                    'blog' => $blog,
+                ]);
+
+            }
         // 实现日志列表静态OB模型
         function blog_to_html(){
 
@@ -228,7 +291,7 @@
             foreach($blogs as $v){
                 // 加载视图  在页面中 把blogs 传到页面中
                 view('blogs.content',[
-                    'blogs'=>$v
+                    'blog'=>$v
                 ]);
                 // 取出缓存区的内容
                 $str = ob_get_contents();
@@ -246,7 +309,14 @@
             // var_dump($id);
             $blog = new Blog;
             // var_dump($blog);
-            $blog->getDisplay($id);
+            $display =  $blog->getDisplay($id);
+            // 返回多个数据时必须要用 JSON
+            echo json_encode([
+                'display' => $display,
+                'email' => isset($_SESSION['email']) ? $_SESSION['email'] : '',
+                'money' => $_SESSION['money'],
+                 'headimg' => $_SESSION['headimg']=='' ? '/images/headimg.jpg' : $_SESSION['headimg'],
+            ]);
         }
         // 调用模型的 
         public function displaydb(){
