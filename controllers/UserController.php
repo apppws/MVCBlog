@@ -3,6 +3,8 @@
     // 引入 excel 的包
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;   
+    // 引入图像
+    use Intervention\Image\ImageManagerStatic as Image;
     // 控制器  
     // 第一步引入模型
     use models\User;
@@ -160,6 +162,14 @@
              // 上传新头像
                 $upload = \libs\Uploadfile::file();
                 $path = $upload->upload('image', 'headimg');
+                
+                // 裁切图片：
+                $image = Image::make(ROOT.'public/uploads/'.$path);
+                // 裁切
+                $image->crop((int)$_POST['x'],(int)$_POST['y'],(int)$_POST['w'],(int)$_POST['h']);
+                
+                // 保存时覆盖原图像
+                $image->save(ROOT.'public/uploads/'.$path);
                   // 保存到 user 表中
                 $model = new \models\User;
                 $model->setface('/uploads/'.$path);

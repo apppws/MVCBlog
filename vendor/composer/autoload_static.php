@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInit4cb88d6464fc78b3edff78d2b316e809
 {
     public static $files = array (
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
@@ -49,6 +49,10 @@ class ComposerStaticInit4cb88d6464fc78b3edff78d2b316e809
             'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
         ),
+        'I' => 
+        array (
+            'Intervention\\Image\\' => 19,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -60,6 +64,10 @@ class ComposerStaticInit4cb88d6464fc78b3edff78d2b316e809
             'Endroid\\QrCode\\' => 15,
             'Endroid\\Installer\\' => 18,
             'Egulias\\EmailValidator\\' => 23,
+        ),
+        'C' => 
+        array (
+            'Composer\\Installers\\' => 20,
         ),
     );
 
@@ -128,6 +136,10 @@ class ComposerStaticInit4cb88d6464fc78b3edff78d2b316e809
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -151,6 +163,10 @@ class ComposerStaticInit4cb88d6464fc78b3edff78d2b316e809
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
+        ),
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
     );
 
