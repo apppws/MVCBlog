@@ -14,7 +14,7 @@
                     WHERE a.list_id=?';                   
             // var_dump($sql);
             $stmt = self::$pdo->prepare($sql);
-
+            
             $stmt->execute([
                 $id
             ]);
