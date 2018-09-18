@@ -25,6 +25,36 @@
         background-color: #EEE;
         padding: 5px;
     }
+    .comment-list{
+        border: 1px solid black;
+        margin-top: 10px;
+        padding: 10px;
+    }
+    .comment-list .left{
+        text-align: center;
+        float: left;
+        width: 15%;
+
+    }
+    .comment-list .left img{
+        width: 50px;
+        height: 50px;
+        border: 1px solid cadetblue;
+        padding: 5px;
+        border-radius: 50%;
+    }
+    .comment-list .right{
+        float: left;
+        margin-left: 10px;
+        font-size: 13px;
+        width: 75%;
+    }
+    .comment-list .date{
+        color: #999;
+        margin-top: 20px;
+    }
+
+
     </style>
 </head>
 <body>
@@ -38,6 +68,35 @@
     <div class="zan-list">
             <h3>点赞列表</h3>
             <div id="zan-list"></div>
+    </div>
+    <br>
+    <h3>评论列表</h3>
+    <div id="app">
+    <div class="comment-list" v-for="(v,k) in comment">
+        <div class="left">
+            <!-- 头像 -->
+            <img :src="v.headimg" alt="">
+            <!-- 邮箱 -->
+            <p>{{v.email}}</p>
+        </div>
+        <div class="right">
+            <!-- 评论内容 -->
+            <div class="con">
+                {{v.content}}
+            </div>
+            <div class="date">
+                {{v.created_at}}
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+   
+        <br>
+        <form action="">
+            <textarea v-model="content" style="width:85%;border: 1px dashed black"  cols="100" rows="10"></textarea>
+            <br>
+            <input @click="submit"  type="button" value="发表评论">
+        </form>
     </div>
     <?php view('common.footer')?>
 </body>
@@ -123,4 +182,51 @@
             }
         }
     });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        // 数据 
+        data:{
+            content:'',
+            list_id:"<?=$blog['id']?>",
+            comment:[]
+        },
+        // 创建完之后执行
+        created:function(){
+            axios.get('/comment/comment_list?id='+id).then((res)=>{
+                // 判断
+                if(res.data.status_code==200){
+                    this.comment =res.data.data
+                }
+            })  
+        },
+        // 定义函数
+        methods:{
+            submit:function(){
+                // 执行AJAX 
+                axios.post('/comment/comment',{
+                    content:this.content,
+                    list_id:this.list_id
+                }).then((res)=>{
+                    // 执行完毕后在执行这行
+                    if(res.data.status_code==200){
+                        // 把最新发表的日志放到数组最前面
+                        this.comment.unshift({
+                            email:res.data.data.email,
+                            content:res.data.data.content,
+                            created_at:res.data.data.created_at,
+                            headimg:res.data.data.headimg
+                        })
+                        this.content = ''
+                    }else{
+                        // 否则就把错误信息打印
+                        alert(res.data.message);
+                    }
+                })
+            }
+        }
+    })
 </script>

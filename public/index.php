@@ -148,6 +148,11 @@ session_start();
             }
             return $_SESSION['token'];
         }
+        // 过滤XSS（在线编辑器填写的内容不能使用该函数过滤）
+        function e($content)
+        {
+            return htmlspecialchars($content);
+        }
 
         // 封装一个 令牌 隐藏域
         function csrf_input(){
